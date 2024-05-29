@@ -28,7 +28,7 @@ function App() {
     <div className="App"
     
     >
-<Porteiroo/>
+<index/>
 
     </div>
 
