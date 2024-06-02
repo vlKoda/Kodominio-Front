@@ -36,6 +36,7 @@ function App() {
         <Route path="/cadastrocondominio" element={<CadastroC />} />
         <Route path="/owner" element={<Owner />} />
         <Route path="/owner/cadastros" element={<Ownerc />} />
+        <Route path="/owner/cadastros/condominio" element={<CadastroC />} />
       </Routes>
  </Router>
 

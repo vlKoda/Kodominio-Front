@@ -1,7 +1,16 @@
 import React from 'react';
 import { Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
 
 function Cadastro() {
+
+  const navigate = useNavigate();
+
+  const handleClickCondominio = () => {
+    navigate('/owner/cadastros/condominio')
+  }
+
   return (
     <Box 
       display="flex" 
@@ -33,6 +42,7 @@ function Cadastro() {
       </button>
       
       <button 
+        onClick={handleClickCondominio}
         style={{ 
           background: '#e1e1e1', 
           padding: '70px 100px', 

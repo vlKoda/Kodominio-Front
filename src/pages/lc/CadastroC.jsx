@@ -14,6 +14,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
+import { useState } from 'react';
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 function Copyright(props) {
@@ -32,61 +35,41 @@ const cargos = ['Porteiro', 'Morador', 'Síndico'];
 const defaultTheme = createTheme();
 
 export default function Cadastro() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const jsonObject = {
-      cep : data.get("CEP"),
-      nome : data.get("Nome do condominio"),
-      rua : data.get("Rua"),
-      numero : data.get("Número"),
-      bairro : data.get("Bairro"), 
-      cidade : data.get("Cidade"),
-      estado : "Bahia"
-    }
-    console.log(JSON.stringify(jsonObject));
 
+  const [cepStr, setCep] = useState('');
+  const [nome, setNome] = useState('');
+  const [rua, setRua] = useState('');
+  const [numeroStr, setNumero] = useState('');
+  const [bairro, setBairro] = useState('');
+  const [cidade, setCidade] = useState('');
+  const estado = "Bahia"
+  const navigate = useNavigate();
+  // const [errorMessage, setErrorMessage] = useState('');
 
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/condominio/cadastrar", false);
-    xhr.setRequestHeader("Content-Type", "application/JSON")
-    xhr.onload = function (e) {
-      //location.reload()
-    };
+  const cep = parseInt(cepStr, 10);
+  const numero = parseInt(numeroStr, 10);
 
-    xhr.send(jsonObject);
-    if (xhr.status != 200) {
-      // errorMsg.innerHTML = "Registro Inválido";
-      // errorDiv.style.setProperty("display", "none");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+
+      const token = localStorage.getItem('token');
+
+      const response = await axios.post('http://localhost:8080/condominio/cadastrar',
+        { cep, nome, rua, numero, bairro, cidade, estado },
+        { headers: { 'Content-Type': 'application/json' , 'Authorization': `Bearer ${token}` }}
+      );
+      localStorage.setItem('token', response.data.token);
+      navigate('/owner/cadastros') 
+    } catch (error) {
+      console.error('Login failed', error);
+      // setErrorMessage('Credenciais inválidas. Por favor, tente novamente.');
       // setTimeout(() => {
-        // errorDiv.style.setProperty("display", "block");
-      // }, 500);
-    } else {
-      //location.href="../../InterfacesPiSchool-main/logins/loginA/index.html"
+      //   setErrorMessage('');
+      // }, 3000); // Oculta a mensagem de erro após 3 segundos
     }
-  
 
-//     try {
-//       const response = fetch('http://localhost:8080/condominio/cadastrar', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         credentials:'include',
-
-//         body: JSON.stringify(jsonObject),
-//       });
-
-//       if (response.ok) {
-//         const result = response.json();
-//         console.log('Funcionário cadastrado com sucesso:', result);
-//       } else {
-//         console.error('Erro ao cadastrar funcionário:', response.statusText);
-//       }
-//     } catch (error) {
-//       console.error('Erro ao fazer a requisição:', error);
-//     }
-   };
+  };
 
   
   
@@ -121,6 +104,8 @@ export default function Cadastro() {
           id="CEP"
           label="CEP"
           autoFocus
+          value={cepStr}
+          onChange={(e) => setCep(e.target.value)}
         />
       </Grid>
       <Grid item xs={12} sm={6}>
@@ -131,6 +116,8 @@ export default function Cadastro() {
           label="Nome do condominio"
           name="Nome do condominio"
           autoComplete="Nome do condomnínio"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
         />
       </Grid>
       <Grid item xs={12} sm={6}>
@@ -141,6 +128,8 @@ export default function Cadastro() {
           label="Rua"
           name="Rua"
           autoComplete="Rua"
+          value={rua}
+          onChange={(e) => setRua(e.target.value)}
         />
       </Grid>
 
@@ -152,6 +141,8 @@ export default function Cadastro() {
           label="Número"
           name="Número"
           autoComplete="Número"
+          value={numeroStr}
+          onChange={(e) => setNumero(e.target.value)}
         />
       </Grid>
       <Grid item xs={12} sm={6}>
@@ -162,6 +153,8 @@ export default function Cadastro() {
           label="Bairro"
           name="Bairro"
           autoComplete="Bairro"
+          value={bairro}
+          onChange={(e) => setBairro(e.target.value)}
         />
       </Grid>
       
@@ -173,6 +166,8 @@ export default function Cadastro() {
           label="Cidade"
           name="Cidade"
           autoComplete="Cidade"
+          value={cidade}
+          onChange={(e) => setCidade(e.target.value)}
         />
       </Grid>
 
