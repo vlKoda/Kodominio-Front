@@ -12,13 +12,17 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
+
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-       Piola
+        Piola
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -29,14 +33,29 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+function Login() {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8080/auth/login',
+        { email, senha },
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+      localStorage.setItem('token', response.data.token);
+      navigate('/owner')
+    } catch (error) {
+      console.error('Login failed', error);
+      setErrorMessage('Credenciais inválidas. Por favor, tente novamente.');
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 3000); // Oculta a mensagem de erro após 3 segundos
+    }
+
   };
 
   return (
@@ -55,7 +74,7 @@ export default function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-          Login
+            Login
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -63,9 +82,11 @@ export default function Login() {
               required
               fullWidth
               id="email"
-              label="Login"
+              label="Email"
               name="email"
               autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -76,45 +97,48 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
             />
-          
-          <Button
-  type="submit"
-  fullWidth
-  variant="contained"
-  sx={{ 
-    backgroundColor: '#2c2c2c',
-    color: '#ffffff',
-    mt: 4, 
-    mb: 3,
-    padding: 1.5,
-    '&:hover': {
-      backgroundColor: '#2c2c2c',
-      transform: 'scale(1.01)',
-    },
-    '&:focus': {
-      backgroundColor: 'transparent',
-    }
-  }}
->
- Login
-</Button>
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{
+                backgroundColor: '#2c2c2c',
+                color: '#ffffff',
+                mt: 4,
+                mb: 3,
+                padding: 1.5,
+                '&:hover': {
+                  backgroundColor: '#2c2c2c',
+                  transform: 'scale(1.01)',
+                },
+                '&:focus': {
+                  backgroundColor: 'transparent',
+                }
+              }}
+            >
+              Login
+            </Button>
 
 
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Esqueceu a senha?
-                </Link>
+                </Link>         
               </Grid>
               <Grid item>
-            
+                {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
               </Grid>
             </Grid>
           </Box>
         </Box>
-     
+
       </Container>
     </ThemeProvider>
   );
 }
+export default Login;

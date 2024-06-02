@@ -17,23 +17,29 @@ import Ownerc from './pages/owner/Ownerc';
 import Sindicoo from './pages/sindico/Sincidoo';
 import Moradoro from './pages/morador/Moradoro';
 import Porteiroo from './pages/Porteiro/Porteiroo';
+import CadastroM from './pages/lc/CadastroM';
+import CadastroC from './pages/lc/CadastroC';
+import { Pages } from '@mui/icons-material';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 
 
 
 
 function App() {
   return (
-   
-
-    <div className="App"
     
-    >
-<Index/>
-
-    </div>
-
+    
+<Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/inicio" element={<Index />} />
+        <Route path="/cadastrocondominio" element={<CadastroC />} />
+        <Route path="/owner" element={<Owner />} />
+        <Route path="/owner/cadastros" element={<Ownerc />} />
+      </Routes>
+ </Router>
 
   );
 }
 
-export default App;
+export default App;

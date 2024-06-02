@@ -35,11 +35,61 @@ export default function Cadastro() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+    const jsonObject = {
+      cep : data.get("CEP"),
+      nome : data.get("Nome do condominio"),
+      rua : data.get("Rua"),
+      numero : data.get("Número"),
+      bairro : data.get("Bairro"), 
+      cidade : data.get("Cidade"),
+      estado : "Bahia"
+    }
+    console.log(JSON.stringify(jsonObject));
+
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:8080/condominio/cadastrar", false);
+    xhr.setRequestHeader("Content-Type", "application/JSON")
+    xhr.onload = function (e) {
+      //location.reload()
+    };
+
+    xhr.send(jsonObject);
+    if (xhr.status != 200) {
+      // errorMsg.innerHTML = "Registro Inválido";
+      // errorDiv.style.setProperty("display", "none");
+      // setTimeout(() => {
+        // errorDiv.style.setProperty("display", "block");
+      // }, 500);
+    } else {
+      //location.href="../../InterfacesPiSchool-main/logins/loginA/index.html"
+    }
+  
+
+//     try {
+//       const response = fetch('http://localhost:8080/condominio/cadastrar', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         credentials:'include',
+
+//         body: JSON.stringify(jsonObject),
+//       });
+
+//       if (response.ok) {
+//         const result = response.json();
+//         console.log('Funcionário cadastrado com sucesso:', result);
+//       } else {
+//         console.error('Erro ao cadastrar funcionário:', response.statusText);
+//       }
+//     } catch (error) {
+//       console.error('Erro ao fazer a requisição:', error);
+//     }
+   };
+
+  
+  
 
   return (
     <ThemeProvider theme={defaultTheme}>
