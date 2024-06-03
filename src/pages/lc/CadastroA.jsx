@@ -14,6 +14,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
+import { useState } from 'react';
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 function Copyright(props) {
@@ -21,7 +24,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-       Piola
+        Piola
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -32,6 +35,13 @@ const cargos = ['Porteiro', 'Morador', 'Síndico'];
 const defaultTheme = createTheme();
 
 export default function Cadastro() {
+
+  const navigate = useNavigate();
+
+  const handleClickSair = () => {
+    navigate('/owner/cadastros')
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -60,70 +70,70 @@ export default function Cadastro() {
             Cadastro de ADM
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <TextField
-          autoComplete="given-name"
-          name="Nome"
-          required
-          fullWidth
-          id="firstName"
-          label="Nome"
-          autoFocus
-        />
-      </Grid>
-     
-      <Grid item xs={12}>
-        <Select
-          label="Condominio"
-          id="Condominio"
-          fullWidth
-          defaultValue=""
-          required
-        >
-        
-         
-       
-        </Select>
-      </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-name"
+                  name="Nome"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="Nome"
+                  autoFocus
+                />
+              </Grid>
 
-      <Grid item xs={12}>
-        <TextField
-          required
-          fullWidth
-          id="email"
-          label="Email"
-          name="email"
-          autoComplete="email"
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          required
-          fullWidth
-          name="Senha"
-          label="Senha"
-          type="password"
-          id="password"
-          autoComplete="new-password"
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          required
-          fullWidth
-          name="Senha"
-          label="Senha novamente"
-          type="password"
-          id="password"
-          autoComplete="new-password"
-        />
-      </Grid>
-     
+              <Grid item xs={12}>
+                <Select
+                  label="Condominio"
+                  id="Condominio"
+                  fullWidth
+                  defaultValue=""
+                  required
+                >
 
 
-    </Grid>
-    <Button
+
+                </Select>
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="Senha"
+                  label="Senha"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="Senha"
+                  label="Senha novamente"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+
+
+
+            </Grid>
+            <Button
               type="submit"
               fullWidth
               variant="contained"
@@ -147,27 +157,28 @@ export default function Cadastro() {
             </Button>
 
             <Button
-  type="submit"
-  fullWidth
-  variant="contained"
-  sx={{
-    backgroundColor: '#2c2c2c',
-    color: '#ffffff',
-   
-    mb: 3,
-    padding: 1.5,
-    '&:hover': {
-      backgroundColor: '#2c2c2c',
-      transform: 'scale(1.01)',
-    }
-  }}
->
-  Voltar
-</Button>
-           
+              onClick={handleClickSair}
+              type="button"
+              fullWidth
+              variant="contained"
+              sx={{
+                backgroundColor: '#2c2c2c',
+                color: '#ffffff',
+
+                mb: 3,
+                padding: 1.5,
+                '&:hover': {
+                  backgroundColor: '#2c2c2c',
+                  transform: 'scale(1.01)',
+                }
+              }}
+            >
+              Voltar
+            </Button>
+
           </Box>
         </Box>
-     
+
       </Container>
     </ThemeProvider>
   );

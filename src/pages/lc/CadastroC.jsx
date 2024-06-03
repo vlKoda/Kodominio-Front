@@ -36,17 +36,22 @@ const defaultTheme = createTheme();
 
 export default function Cadastro() {
 
+  const navigate = useNavigate();
+
+  const handleClickSair = () => {
+    navigate('/owner/cadastros')
+  }
+
   const [cepStr, setCep] = useState('');
   const [nome, setNome] = useState('');
   const [rua, setRua] = useState('');
   const [numeroStr, setNumero] = useState('');
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
-  const estado = "Bahia"
+  const [estado, setEstado] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const navigate = useNavigate();
   // const [errorMessage, setErrorMessage] = useState('');
 
   const cep = parseInt(cepStr, 10);
@@ -76,6 +81,7 @@ export default function Cadastro() {
       setNumero('');
       setBairro('');
       setCidade('');
+      setEstado('');
 
     } catch (error) {
       console.error('Registration failed', error);
@@ -184,7 +190,6 @@ export default function Cadastro() {
                   onChange={(e) => setCidade(e.target.value)}
                 />
               </Grid>
-
               <Grid item xs={24} sm={12}>
                 <TextField
                   required
@@ -194,7 +199,8 @@ export default function Cadastro() {
                   name="Estado"
                   autoComplete="Estado"
                   value={estado}
-                  
+                  onChange={(e) => setEstado(e.target.value)}
+
                 />
               </Grid>
 
@@ -223,23 +229,24 @@ export default function Cadastro() {
             </Button>
 
             <Button
-  type="submit"
-  fullWidth
-  variant="contained"
-  sx={{
-    backgroundColor: '#2c2c2c',
-    color: '#ffffff',
-   
-    mb: 3,
-    padding: 1.5,
-    '&:hover': {
-      backgroundColor: '#2c2c2c',
-      transform: 'scale(1.01)',
-    }
-  }}
->
-  Voltar
-</Button>
+              onClick={handleClickSair}
+              type="button"
+              fullWidth
+              variant="contained"
+              sx={{
+                backgroundColor: '#2c2c2c',
+                color: '#ffffff',
+
+                mb: 3,
+                padding: 1.5,
+                '&:hover': {
+                  backgroundColor: '#2c2c2c',
+                  transform: 'scale(1.01)',
+                }
+              }}
+            >
+              Voltar
+            </Button>
 
             <Grid item>
               {successMessage && <div style={{ color: 'green' }}>{successMessage}</div>}

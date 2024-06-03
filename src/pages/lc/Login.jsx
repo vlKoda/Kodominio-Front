@@ -17,6 +17,7 @@ import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -35,9 +36,14 @@ const defaultTheme = createTheme();
 
 function Login() {
 
+  const navigate = useNavigate();
+
+  const handleClickSair = () => {
+    navigate('/')
+  }
+
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
@@ -102,50 +108,51 @@ function Login() {
               onChange={(e) => setSenha(e.target.value)}
             />
 
-<Button
-  type="submit"
-  fullWidth
-  variant="contained"
-  sx={{
-    backgroundColor: '#2c2c2c',
-    color: '#ffffff',
-    mt: 4,
-    mb: 3,
-    padding: 1.5,
-    '&:hover': {
-      backgroundColor: '#2c2c2c',
-      transform: 'scale(1.01)',
-    }
-  }}
->
-  Login
-</Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{
+                backgroundColor: '#2c2c2c',
+                color: '#ffffff',
+                mt: 4,
+                mb: 3,
+                padding: 1.5,
+                '&:hover': {
+                  backgroundColor: '#2c2c2c',
+                  transform: 'scale(1.01)',
+                }
+              }}
+            >
+              Login
+            </Button>
 
-<Button
-  type="submit"
-  fullWidth
-  variant="contained"
-  sx={{
-    backgroundColor: '#2c2c2c',
-    color: '#ffffff',
-   
-    mb: 3,
-    padding: 1.5,
-    '&:hover': {
-      backgroundColor: '#2c2c2c',
-      transform: 'scale(1.01)',
-    }
-  }}
->
-  Voltar
-</Button>
+            <Button
+              onClick={handleClickSair}
+              type="button"
+              fullWidth
+              variant="contained"
+              sx={{
+                backgroundColor: '#2c2c2c',
+                color: '#ffffff',
+
+                mb: 3,
+                padding: 1.5,
+                '&:hover': {
+                  backgroundColor: '#2c2c2c',
+                  transform: 'scale(1.01)',
+                }
+              }}
+            >
+              Voltar
+            </Button>
 
 
             <Grid container>
               <Grid item xs>
-                <Link href="#"  variant="body2">
-                 
-                </Link>         
+                <Link href="#" variant="body2">
+
+                </Link>
               </Grid>
               <Grid item>
                 {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
