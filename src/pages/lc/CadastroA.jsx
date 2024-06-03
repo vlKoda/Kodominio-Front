@@ -84,18 +84,20 @@ export default function Cadastro() {
               </Grid>
 
               <Grid item xs={12}>
-                <Select
-                  label="Condominio"
-                  id="Condominio"
-                  fullWidth
-                  defaultValue=""
-                  required
-                >
+  <Select
+    name='Condominio'
+    label="Condominio"
+    id="Condominio"
+    fullWidth
+    defaultValue=""
+    required
+    displayEmpty // Isso permite que o campo Select exiba um valor vazio
+  >
+    <MenuItem value="" disabled>Condominio</MenuItem>
 
+  </Select>
+</Grid>
 
-
-                </Select>
-              </Grid>
 
               <Grid item xs={12}>
                 <TextField
@@ -107,6 +109,18 @@ export default function Cadastro() {
                   autoComplete="email"
                 />
               </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="telefone"
+                  label="telefone"
+                  name="telefone"
+                  autoComplete="telefone"
+                />
+              </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
