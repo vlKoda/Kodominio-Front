@@ -16,7 +16,7 @@ function Integrantes() {
           backgroundColor: '#e1e1e1', // Cor do Card
           padding: '30px 40px', // Reduz o padding
           borderRadius: '10px', // Mantém o border-radius
-          marginRight: '10px', // Espaçamento entre cards
+          marginRight: '50px', // Espaçamento entre cards
           marginLeft: '10px', // Espaçamento entre cards
           marginBottom: '30px', // Margem inferior
           boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)', // Sombras leves
@@ -26,11 +26,11 @@ function Integrantes() {
         onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0px 12px 20px rgba(0, 0, 0, 0.2)'}
         onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0px 8px 16px rgba(0, 0, 0, 0.1)'}
       >
-        <CardContent>
-          <Typography variant="body1" fontSize="1.2rem" marginBottom="10px">
+        <CardContent  >
+          <Typography variant="body1" fontSize="1.2rem" marginBottom="10px" fontFamily="'Poppins', sans-serif" >
             Nome: Fulano de Tal
           </Typography>
-          <Typography variant="body1" fontSize="1.2rem" marginBottom="20px">
+          <Typography variant="body1" fontSize="1.2rem" marginBottom="20px" fontFamily="'Poppins', sans-serif">
             Função: seila
           </Typography>
           <Button
@@ -66,10 +66,10 @@ function Integrantes() {
         onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0px 8px 16px rgba(0, 0, 0, 0.1)'}
       >
         <CardContent>
-          <Typography variant="body1" fontSize="1.2rem" marginBottom="10px">
+          <Typography variant="body1" fontSize="1.2rem" marginBottom="10px" fontFamily="'Poppins', sans-serif">
             Nome: Ciclano de Tal
           </Typography>
-          <Typography variant="body1" fontSize="1.2rem" marginBottom="20px">
+          <Typography variant="body1" fontSize="1.2rem" marginBottom="20px" fontFamily="'Poppins', sans-serif">
             Função: seila
           </Typography>
           <Button

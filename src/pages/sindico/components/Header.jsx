@@ -47,7 +47,7 @@ function Header() {
                   },
                 }} />
 
-            <StyledButton color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' } }}>Cadastros</StyledButton>
+            <StyledButton color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' } }}>Ocorrências</StyledButton>
             <AssignmentIcon sx={{
                   color: 'black',
                   display: { xs: 'block', sm: 'none' },

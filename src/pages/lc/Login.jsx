@@ -102,27 +102,43 @@ function Login() {
               onChange={(e) => setSenha(e.target.value)}
             />
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{
-                backgroundColor: '#2c2c2c',
-                color: '#ffffff',
-                mt: 4,
-                mb: 3,
-                padding: 1.5,
-                '&:hover': {
-                  backgroundColor: '#2c2c2c',
-                  transform: 'scale(1.01)',
-                },
-                '&:focus': {
-                  backgroundColor: 'transparent',
-                }
-              }}
-            >
-              Login
-            </Button>
+<Button
+  type="submit"
+  fullWidth
+  variant="contained"
+  sx={{
+    backgroundColor: '#2c2c2c',
+    color: '#ffffff',
+    mt: 4,
+    mb: 3,
+    padding: 1.5,
+    '&:hover': {
+      backgroundColor: '#2c2c2c',
+      transform: 'scale(1.01)',
+    }
+  }}
+>
+  Login
+</Button>
+
+<Button
+  type="submit"
+  fullWidth
+  variant="contained"
+  sx={{
+    backgroundColor: '#2c2c2c',
+    color: '#ffffff',
+   
+    mb: 3,
+    padding: 1.5,
+    '&:hover': {
+      backgroundColor: '#2c2c2c',
+      transform: 'scale(1.01)',
+    }
+  }}
+>
+  Voltar
+</Button>
 
 
             <Grid container>

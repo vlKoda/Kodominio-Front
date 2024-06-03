@@ -47,7 +47,7 @@ export default function Cadastro() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 3,
+            marginTop: 15,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -124,26 +124,46 @@ export default function Cadastro() {
      
 
     </Grid>
+    <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{
+                backgroundColor: '#2c2c2c',
+                color: '#ffffff',
+                mt: 4,
+                mb: 3,
+                padding: 1.5,
+                '&:hover': {
+                  backgroundColor: '#2c2c2c',
+                  transform: 'scale(1.01)',
+                },
+                '&:focus': {
+                  backgroundColor: '#2c2c2c',
+                  transform: 'scale(1.01)',
+                }
+              }}
+            >
+              Cadastrar
+            </Button>
+
             <Button
   type="submit"
   fullWidth
   variant="contained"
-  sx={{ 
+  sx={{
     backgroundColor: '#2c2c2c',
     color: '#ffffff',
-    mt: 4, 
+   
     mb: 3,
     padding: 1.5,
     '&:hover': {
       backgroundColor: '#2c2c2c',
       transform: 'scale(1.01)',
-    },
-    '&:focus': {
-      backgroundColor: 'transparent',
     }
   }}
 >
-Cadastrar
+  Voltar
 </Button>
            
           </Box>
