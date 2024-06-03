@@ -76,7 +76,6 @@ export default function Cadastro() {
       setNumero('');
       setBairro('');
       setCidade('');
-      localStorage.setItem('token', response.data.token);
 
     } catch (error) {
       console.error('Registration failed', error);
@@ -185,6 +184,7 @@ export default function Cadastro() {
                   onChange={(e) => setCidade(e.target.value)}
                 />
               </Grid>
+
               <Grid item xs={24} sm={12}>
                 <TextField
                   required
@@ -193,7 +193,7 @@ export default function Cadastro() {
                   label="Estado"
                   name="Estado"
                   autoComplete="Estado"
-                  value={cidade}
+                  value={estado}
                   
                 />
               </Grid>

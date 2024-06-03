@@ -14,7 +14,7 @@ function Cadastro() {
         style={{ 
           background: '#e1e1e1', 
           padding: '70px 100px', 
-          marginRight:'70px', // Margem à direita para separar os botões
+          marginRight:'10px', // Margem à direita para separar os botões
           marginLeft: '10px', // Margem à esquerda para separar os botões
           borderRadius: '10px', 
           marginBottom: '30px', // Margem inferior comum
@@ -36,8 +36,8 @@ function Cadastro() {
         style={{ 
           background: '#e1e1e1', 
           padding: '70px 100px', 
+       
           borderRadius: '10px', 
-          marginRight:'23px', // Margem à direita para separar os botões
           marginBottom: '30px', // Margem inferior comum
           border: 'none',
           boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',

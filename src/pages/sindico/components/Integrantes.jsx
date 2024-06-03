@@ -14,17 +14,18 @@ function Integrantes() {
         style={{ 
           background: '#e1e1e1', 
           padding: '70px 100px', 
-          marginRight:'30px', 
-          marginLeft: '10px', 
+          marginRight:'10px', // Margem à direita para separar os botões
+          marginLeft: '10px', // Margem à esquerda para separar os botões
           borderRadius: '10px', 
-          marginBottom: '30px', 
+          marginBottom: '30px', // Margem inferior comum
           border: 'none',
           boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
           transition: 'transform 0.3s, box-shadow 0.3s', 
           cursor: 'pointer',
           fontFamily: "'Poppins', sans-serif",
         }}
- 
+        // Adicionando o estilo de hover usando a pseudo-classe CSS :hover
+        // para o botão 1
         onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0px 12px 20px rgba(0, 0, 0, 0.2)'}
         onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0px 8px 16px rgba(0, 0, 0, 0.1)'}
       >
@@ -37,14 +38,15 @@ function Integrantes() {
           background: '#e1e1e1', 
           padding: '70px 100px', 
           borderRadius: '10px', 
-          marginBottom: '30px',
+          marginBottom: '30px', // Margem inferior comum
           border: 'none',
           boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
           transition: 'transform 0.3s, box-shadow 0.3s', 
           cursor: 'pointer' ,
           fontFamily: "'Poppins', sans-serif",
         }}
-  
+        // Adicionando o estilo de hover usando a pseudo-classe CSS :hover
+        // para o botão 2
         onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0px 12px 20px rgba(0, 0, 0, 0.2)'}
         onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0px 8px 16px rgba(0, 0, 0, 0.1)'}
       >
@@ -56,17 +58,18 @@ function Integrantes() {
         style={{ 
           background: '#e1e1e1', 
           padding: '70px 100px', 
-          marginRight:'10px', 
-          marginLeft: '30px', 
+          marginRight:'10px', // Margem à direita para separar os botões
+          marginLeft: '10px', // Margem à esquerda para separar os botões
           borderRadius: '10px', 
-          marginBottom: '30px', 
+          marginBottom: '30px', // Margem inferior comum
           border: 'none',
           boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
           transition: 'transform 0.3s, box-shadow 0.3s', 
           cursor: 'pointer',
           fontFamily: "'Poppins', sans-serif",
         }}
-    
+        // Adicionando o estilo de hover usando a pseudo-classe CSS :hover
+        // para o botão 1
         onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0px 12px 20px rgba(0, 0, 0, 0.2)'}
         onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0px 8px 16px rgba(0, 0, 0, 0.1)'}
       >

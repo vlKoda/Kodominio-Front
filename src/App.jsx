@@ -34,7 +34,7 @@ function App() {
     
 <Router>
       <Routes>
-        <Route path="/" element={<Admc/>} />
+        <Route path="/" element={<Sindico/>} />
         <Route path="/login" element={<Login />} />
         <Route path="owner/cadastros/condominio" element={<CadastroC />} />
         <Route path="/owner" element={<Owner />} />
