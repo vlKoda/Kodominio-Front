@@ -34,6 +34,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 function Login() {
+
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
@@ -126,8 +127,8 @@ function Login() {
 
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Esqueceu a senha?
+                <Link href="#"  variant="body2">
+                 
                 </Link>         
               </Grid>
               <Grid item>

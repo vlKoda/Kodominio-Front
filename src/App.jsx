@@ -19,8 +19,10 @@ import Moradoro from './pages/morador/Moradoro';
 import Porteiroo from './pages/Porteiro/Porteiroo';
 import CadastroM from './pages/lc/CadastroM';
 import CadastroC from './pages/lc/CadastroC';
+import CadastroA from './pages/lc/CadastroA';
 import { Pages } from '@mui/icons-material';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import Integrantes from './pages/adm/components/Integrantes';
 
 
 
@@ -31,12 +33,13 @@ function App() {
     
 <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/inicio" element={<Index />} />
-        <Route path="/cadastrocondominio" element={<CadastroC />} />
+        <Route path="/" element={<Index />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="owner/cadastros/condominio" element={<CadastroC />} />
         <Route path="/owner" element={<Owner />} />
         <Route path="/owner/cadastros" element={<Ownerc />} />
-        <Route path="/owner/cadastros/condominio" element={<CadastroC />} />
+        <Route path="/owner/cadastros/adm" element={<CadastroA />} />
+        <Route path="/owner/integrantes" element={<Integrantes />} />
       </Routes>
  </Router>
 

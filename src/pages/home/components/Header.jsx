@@ -4,6 +4,7 @@ import { styled } from '@mui/system';
 import LoginIcon from '@mui/icons-material/Login';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const StyledButton = styled(Button)({
   marginRight: '16px',
@@ -15,6 +16,11 @@ const StyledButton = styled(Button)({
 });
 
 function Header() {
+  const navigate = useNavigate();
+
+  const handleClickLogin = () => {
+    navigate('/login')
+  }
   return (
     <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
       <AppBar position="static" sx={{ bgcolor: '#e1e1e1', borderRadius: '10px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)', width: '100%' }}>
@@ -23,7 +29,7 @@ function Header() {
             <Grid item xs={6} sm={6} md={8}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               
-                  <StyledButton color="inherit" sx={{ color: 'black', marginRight: '400px', display: { xs: 'none', sm: 'block' } }}>Login</StyledButton>
+                  <StyledButton onClick={handleClickLogin} color="inherit" sx={{ color: 'black', marginRight: '400px', display: { xs: 'none', sm: 'block' } }}>Login</StyledButton>
                   <LoginIcon sx={{
                     color: 'black',
                     marginRight: '120px',

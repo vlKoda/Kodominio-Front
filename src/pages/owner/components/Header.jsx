@@ -23,6 +23,9 @@ function Header() {
   const handleClickCadastro = () => {
     navigate('/owner/cadastros')
   }
+  const handleClickSair = () => {
+    navigate('/');
+  }
   return (
     <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
       <AppBar position="static" sx={{ bgcolor: '#e1e1e1', borderRadius: '10px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)', width: '100%' }}>
@@ -31,7 +34,7 @@ function Header() {
             <Grid item xs={6} sm={6} md={8}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
-                <StyledButton color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'block' },marginLeft:'40px'  }}>Sair</StyledButton>
+                <StyledButton onClick= {handleClickSair} color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'block' },marginLeft:'40px'  }}>Sair</StyledButton>
                 <ExitToAppIcon sx={{
                   color: 'black',
                   marginRight: '35px',

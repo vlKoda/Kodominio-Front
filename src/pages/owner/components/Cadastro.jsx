@@ -10,26 +10,29 @@ function Cadastro() {
   const handleClickCondominio = () => {
     navigate('/owner/cadastros/condominio')
   }
+  const handleClickAdm = () => {
+    navigate('/owner/cadastros/adm')
+  }
 
   return (
-    <Box 
-      display="flex" 
+    <Box
+      display="flex"
       flexDirection={{ xs: 'column', sm: 'column', md: 'row' }} // Alinhe verticalmente em telas pequenas (sm)
       justifyContent={{ xs: 'center', sm: 'center', md: 'center' }} // Centralize horizontalmente
       alignItems="center" // Centralize verticalmente
       marginTop={{ xs: '30px', sm: '30px', md: '70px' }} // Adicione margem superior apenas em xs e md
-    > 
-      <button 
-        style={{ 
-          background: '#e1e1e1', 
-          padding: '70px 100px', 
-          marginRight:'10px', // Margem à direita para separar os botões
+    >
+      <button
+        style={{
+          background: '#e1e1e1',
+          padding: '70px 100px',
+          marginRight: '10px', // Margem à direita para separar os botões
           marginLeft: '10px', // Margem à esquerda para separar os botões
-          borderRadius: '10px', 
+          borderRadius: '10px',
           marginBottom: '30px', // Margem inferior comum
           border: 'none',
           boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-          transition: 'transform 0.3s, box-shadow 0.3s', 
+          transition: 'transform 0.3s, box-shadow 0.3s',
           cursor: 'pointer',
           fontFamily: "'Poppins', sans-serif",
         }}
@@ -40,18 +43,18 @@ function Cadastro() {
       >
         Cadastrar funcionário
       </button>
-      
-      <button 
+
+      <button
         onClick={handleClickCondominio}
-        style={{ 
-          background: '#e1e1e1', 
-          padding: '70px 100px', 
-          borderRadius: '10px', 
+        style={{
+          background: '#e1e1e1',
+          padding: '70px 100px',
+          borderRadius: '10px',
           marginBottom: '30px', // Margem inferior comum
           border: 'none',
           boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-          transition: 'transform 0.3s, box-shadow 0.3s', 
-          cursor: 'pointer' ,
+          transition: 'transform 0.3s, box-shadow 0.3s',
+          cursor: 'pointer',
           fontFamily: "'Poppins', sans-serif",
         }}
         // Adicionando o estilo de hover usando a pseudo-classe CSS :hover
@@ -62,17 +65,18 @@ function Cadastro() {
         Cadastrar condomínio
       </button>
 
-      <button 
-        style={{ 
-          background: '#e1e1e1', 
-          padding: '70px 100px', 
-          marginRight:'10px', // Margem à direita para separar os botões
+      <button
+        onClick={handleClickAdm}
+        style={{
+          background: '#e1e1e1',
+          padding: '70px 100px',
+          marginRight: '10px', // Margem à direita para separar os botões
           marginLeft: '10px', // Margem à esquerda para separar os botões
-          borderRadius: '10px', 
+          borderRadius: '10px',
           marginBottom: '30px', // Margem inferior comum
           border: 'none',
           boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
-          transition: 'transform 0.3s, box-shadow 0.3s', 
+          transition: 'transform 0.3s, box-shadow 0.3s',
           cursor: 'pointer',
           fontFamily: "'Poppins', sans-serif",
         }}
@@ -83,7 +87,7 @@ function Cadastro() {
       >
         Cadastrar administrador
       </button>
-      
+
     </Box>
   );
 }
