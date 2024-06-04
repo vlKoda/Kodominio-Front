@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
+import config from '../../config';
 
 
 
@@ -49,7 +50,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/auth/login',
+      const response = await axios.post(config.apiUrl + '/auth/login',
         { email, senha },
         { headers: { 'Content-Type': 'application/json' } }
       );

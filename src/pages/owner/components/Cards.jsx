@@ -3,6 +3,9 @@ import { Box, Typography, Button } from '@mui/material';
 import { styled } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import config from '../../../config';
 
 
 
@@ -33,12 +36,43 @@ const ButtonGroup = styled(Box)({
   marginTop: '15px',
 });
 
-function Ocor() {
+
+function Condominios() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(config.apiUrl + '/condominio/listar',
+        { headers: {'Authorization': `Bearer ${token}` } });
+        setData(response.data);
+        setLoading(false);  
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <Typography variant="body1">Carregando...</Typography>;
+  }
+
+  if (error) {
+    return <Typography variant="body1">Erro ao carregar os dados: {error.message}</Typography>;
+  }
 
   const handleGrauChange = (event, index) => {
 
     console.log(event.target.value);
   };
+
   return (
     <Box
       sx={{
@@ -62,53 +96,38 @@ function Ocor() {
           },
         }}
       >
-        <StyledDiv>
-          <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Condomínio 1
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-    Informaçôes do condomínio
-          </Typography>
-       
-        </StyledDiv>
+
+        {data.map((condominio, index) => (
+          <StyledDiv key={index}>
+            <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
+              {condominio.nome} {/* Supondo que o nome do condomínio esteja no campo 'nome' */}
+            </Typography>
+            <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
+              {condominio.estado} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+            </Typography>
+            <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
+              {condominio.cidade} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+            </Typography>
+            <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
+              {condominio.bairro} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+            </Typography>
+            <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
+              {condominio.rua} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+            </Typography>
+            <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
+              Numero: {condominio.numero} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+            </Typography>
+            <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
+             CEP: {condominio.cep} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+            </Typography>
+          </StyledDiv>
+        ))}
 
 
-        <StyledDiv>
-        <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Condomínio 2
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-    Informaçôes do condominio
-          </Typography>
-          
-        
-        </StyledDiv>
 
-        <StyledDiv>
-          <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-           Condominio 3
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-    Informaçôes do condominio
-          </Typography>
-        
-          
-        </StyledDiv>
-
-        <StyledDiv>
-          <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-           Condominio 4
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-    Informaçôes do condominio
-          </Typography>
-         
-        
-          
-        </StyledDiv>
       </Box>
-    </Box>
+    </Box>
   );
 }
 
-export default Ocor;
+export default Condominios;

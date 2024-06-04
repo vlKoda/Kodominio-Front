@@ -3,9 +3,8 @@ version: '3.8'
 services:
   db:
     image: mysql:8.0
-    restart: always
     environment:
-      MYSQL_DATABASE: kodominio
+      #MYSQL_DATABASE: kodominio
       MYSQL_ROOT_PASSWORD: Celo1337,
     ports:
       - "3306:3306"

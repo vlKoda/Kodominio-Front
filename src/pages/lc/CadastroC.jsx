@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
+import config from '../../config';
 
 
 function Copyright(props) {
@@ -63,7 +64,7 @@ export default function Cadastro() {
 
       const token = localStorage.getItem('token');
 
-      const response = await axios.post('http://localhost:8080/condominio/cadastrar',
+      const response = await axios.post(config.apiUrl + '/condominio/cadastrar',
         { cep, nome, rua, numero, bairro, cidade, estado },
         { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
       );
