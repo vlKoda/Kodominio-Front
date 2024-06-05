@@ -10,6 +10,8 @@ services:
       - "3306:3306"
     networks:
       - web
+    volumes:
+      - mysql-data:/var/lib/mysql
 
   frontend:
     depends_on:
@@ -36,3 +38,6 @@ services:
 networks:
   web:
     external: true
+
+volumes:
+  mysql-data:
