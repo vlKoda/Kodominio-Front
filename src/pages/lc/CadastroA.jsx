@@ -49,9 +49,8 @@ export default function Cadastro() {
   const [selectedCondominio, setSelectedCondominio] = useState([]);
 
   const handleCondominioChange = (event) => {
-    const { value } = event.target;
-    setSelectedCondominio(value);
-  };
+    setSelectedCondominio(event.target.value);
+  };  
 
   useEffect(() => {
 
@@ -60,7 +59,7 @@ export default function Cadastro() {
         const token = localStorage.getItem('token');
         const response = await axios.get(config.apiUrl + '/condominio/listar',
           { headers: { 'Authorization': `Bearer ${token}` } });
-        setData(response.data); 
+        setData(response.data);
       } catch (error) {
       }
     };
@@ -80,6 +79,7 @@ export default function Cadastro() {
 
 
   const handleSubmit = async (e) => {
+    const condominioId = selectedCondominio;
     e.preventDefault();
 
     if (senha != senha2) {
@@ -88,14 +88,14 @@ export default function Cadastro() {
         setErrorMessage('');
       }, 3000);
 
-      console.log("Nome: " + nome + " Email: " + email + " Telefone: " + telefone + " Senha: " + senha + " Senha2: " + senha2 + " Role: " + role + " Condominio: " + selectedCondominio + " Apartamento: " + apartamento);
+      console.log("Nome: " + nome + " Email: " + email + " Telefone: " + telefone + " Senha: " + senha + " Senha2: " + senha2 + " Role: " + role + " Condominio: " + condominioId + " Apartamento: " + apartamento);
     } else {
       try {
 
         const token = localStorage.getItem('token');
 
-        const response = await axios.post(config.apiUrl + '/usuario/cadastrar',
-          { nome, email, senha, telefone, role, selectedCondominio, apartamento },
+        const response = await axios.post(config.apiUrl + '/auth/register',
+          { nome, email, senha, telefone, role, condominioId, apartamento },
           { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
         );
 
@@ -169,14 +169,14 @@ export default function Cadastro() {
                   value={selectedCondominio}
                   onChange={handleCondominioChange}
                   displayEmpty
-                  renderValue={(selected) => data.find(condominio => condominio.nome === selected)?.nome || ''}
+                  renderValue={(selected) => data.find(condominio => condominio.id === selected)?.nome || ''}
                   required
                 >
                   <MenuItem value="" disabled>
                     Selecione o Condominio
-                  </MenuItem>
+                    </MenuItem>
                   {data.map((condominio) => (
-                    <MenuItem key={condominio.nome} value={condominio.nome}>
+                    <MenuItem key={condominio.id} value={condominio.id}>
                       {condominio.nome}
                     </MenuItem>
                   ))}
