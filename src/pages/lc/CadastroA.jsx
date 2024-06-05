@@ -14,9 +14,11 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
+import config from '../../config';
+import { useState, useEffect } from 'react';
+import { InputLabel } from '@mui/material';
 
 
 function Copyright(props) {
@@ -42,14 +44,86 @@ export default function Cadastro() {
     navigate('/owner/cadastros')
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+  const [data, setData] = useState([]);
+  const [selectedCondominio, setSelectedCondominio] = useState([]);
+
+  const handleCondominioChange = (event) => {
+    const { value } = event.target;
+    setSelectedCondominio(value);
   };
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(config.apiUrl + '/condominio/listar',
+          { headers: { 'Authorization': `Bearer ${token}` } });
+        setData(response.data); 
+      } catch (error) {
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [senha, setSenha] = useState('');
+  const [senha2, setSenha2] = useState('');
+  const role = "ADMIN"
+  const apartamento = null
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (senha != senha2) {
+      setErrorMessage('As senhas precisam coincidir, tente novamente');
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 3000);
+
+      console.log("Nome: " + nome + " Email: " + email + " Telefone: " + telefone + " Senha: " + senha + " Senha2: " + senha2 + " Role: " + role + " Condominio: " + selectedCondominio + " Apartamento: " + apartamento);
+    } else {
+      try {
+
+        const token = localStorage.getItem('token');
+
+        const response = await axios.post(config.apiUrl + '/usuario/cadastrar',
+          { nome, email, senha, telefone, role, selectedCondominio, apartamento },
+          { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
+        );
+
+        // mensagem de sucesso
+        setSuccessMessage('Cadastro realizado com sucesso!');
+        setTimeout(() => {
+          setSuccessMessage('');
+        }, 3000);
+
+        // limpa campos
+        setNome('');
+        setSelectedCondominio('');
+        setEmail('');
+        setTelefone('');
+        setSenha('');
+        setSenha2('');
+
+      } catch (error) {
+        console.error('Registration failed', error);
+        // mensagem de erro
+        setErrorMessage('Falha no cadastro. Por favor, tente novamente.');
+        setTimeout(() => {
+          setErrorMessage('');
+        }, 3000);
+      }
+    };
+  }
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -80,21 +154,32 @@ export default function Cadastro() {
                   id="firstName"
                   label="Nome"
                   autoFocus
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
                 />
               </Grid>
 
               <Grid item xs={12}>
+                <InputLabel>Condomínio</InputLabel>
                 <Select
-                  name='Condominio'
+                  name="Condominio"
                   label="Condominio"
                   id="Condominio"
                   fullWidth
-                  defaultValue=""
+                  value={selectedCondominio}
+                  onChange={handleCondominioChange}
+                  displayEmpty
+                  renderValue={(selected) => data.find(condominio => condominio.nome === selected)?.nome || ''}
                   required
-                  displayEmpty // Isso permite que o campo Select exiba um valor vazio
                 >
-                  <MenuItem value="" disabled>Condominio</MenuItem>
-
+                  <MenuItem value="" disabled>
+                    Selecione o Condominio
+                  </MenuItem>
+                  {data.map((condominio) => (
+                    <MenuItem key={condominio.nome} value={condominio.nome}>
+                      {condominio.nome}
+                    </MenuItem>
+                  ))}
                 </Select>
               </Grid>
 
@@ -107,6 +192,8 @@ export default function Cadastro() {
                   label="Email"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
 
@@ -118,6 +205,8 @@ export default function Cadastro() {
                   label="Telefone"
                   name="telefone"
                   autoComplete="telefone"
+                  value={telefone}
+                  onChange={(e) => setTelefone(e.target.value)}
                 />
               </Grid>
 
@@ -130,6 +219,8 @@ export default function Cadastro() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -141,6 +232,8 @@ export default function Cadastro() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={senha2}
+                  onChange={(e) => setSenha2(e.target.value)}
                 />
               </Grid>
 
@@ -189,11 +282,12 @@ export default function Cadastro() {
             >
               Voltar
             </Button>
-
+            {successMessage && <div style={{ color: 'green' }}>{successMessage}</div>}
+            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
           </Box>
         </Box>
 
       </Container>
     </ThemeProvider>
   );
-}
+} 
