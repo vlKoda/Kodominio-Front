@@ -79,7 +79,7 @@ export default function Cadastro() {
 
 
   const handleSubmit = async (e) => {
-    const condominioId = selectedCondominio;
+    const id_condominio = selectedCondominio;
     e.preventDefault();
 
     if (senha != senha2) {
@@ -88,14 +88,14 @@ export default function Cadastro() {
         setErrorMessage('');
       }, 3000);
 
-      console.log("Nome: " + nome + " Email: " + email + " Telefone: " + telefone + " Senha: " + senha + " Senha2: " + senha2 + " Role: " + role + " Condominio: " + condominioId + " Apartamento: " + apartamento);
+      console.log("Nome: " + nome + " Email: " + email + " Telefone: " + telefone + " Senha: " + senha + " Senha2: " + senha2 + " Role: " + role + " Condominio: " + id_condominio + " Apartamento: " + apartamento);
     } else {
       try {
 
         const token = localStorage.getItem('token');
 
         const response = await axios.post(config.apiUrl + '/auth/register',
-          { nome, email, senha, telefone, role, condominioId, apartamento },
+          { nome, email, senha, telefone, role, condominio:{id: id_condominio}, apartamento },
           { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
         );
 
