@@ -74,6 +74,16 @@ export default function Cadastro() {
         />
       </Grid>
 
+      <Grid item xs={12}>
+        <TextField
+          required
+          fullWidth
+          id="telefone"
+          label="Telefone"
+          name="telefone"
+          autoComplete="telefone"
+        />
+      </Grid>
 
       <Grid item xs={12}>
   <TextField
@@ -101,7 +111,7 @@ export default function Cadastro() {
           required
           fullWidth
           name="Senha"
-          label="Senha novamente"
+          label="Confirmar senha"
           type="password"
           id="password"
           autoComplete="new-password"

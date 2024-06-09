@@ -34,7 +34,7 @@ function App() {
     
 <Router>
       <Routes>
-        <Route path="/" element={<Index/>} />
+        <Route path="/" element={<CadastroF/>} />
         <Route path="/login" element={<Login />} />
         <Route path="owner/cadastros/condominio" element={<CadastroC />} />
         <Route path="/owner" element={<Owner />} />

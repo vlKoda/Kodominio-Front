@@ -73,7 +73,7 @@ export default function Newsenha() {
               required
               fullWidth
               name="Senha"
-              label="Senha novamente"
+              label="Confirmar senha"
               type="password"
               id="password"
               autoComplete="new-password"
