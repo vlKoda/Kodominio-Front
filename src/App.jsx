@@ -38,6 +38,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="owner/cadastros/condominio" element={<CadastroC />} />
         <Route path="/owner" element={<Owner />} />
+        <Route path="/adm" element={<Adm />} />
+        <Route path="/adm/cadastros" element={<Admc />} />
+        <Route path="/adm/cadastros/morador" element={<CadastroM />} />
+        <Route path="/adm/cadastros/funcionario" element={<CadastroF />} />
         <Route path="/owner/cadastros" element={<Ownerc />} />
         <Route path="/owner/cadastros/adm" element={<CadastroA />} />
         <Route path="/owner/integrantes" element={<Integrantes />} />

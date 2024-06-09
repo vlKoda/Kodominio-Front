@@ -4,6 +4,7 @@ import { styled } from '@mui/system';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import PeopleIcon from '@mui/icons-material/People';
+import { useNavigate } from 'react-router-dom';
 
 const StyledButton = styled(Button)({
   marginRight: '16px',
@@ -14,6 +15,15 @@ const StyledButton = styled(Button)({
   },
 });
 function Header() {
+  const navigate = useNavigate();
+
+  const handleClickCadastro = () => {
+    navigate('/adm/cadastros')
+  }
+  const handleClickSair = () => {
+    navigate('/');
+  }
+
   return (
     <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
       <AppBar position="static" sx={{ bgcolor: '#e1e1e1', borderRadius: '10px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)', width: '100%', fontFamily:"'Poppins', sans-serif" }}>
@@ -22,7 +32,7 @@ function Header() {
             <Grid item xs={6} sm={6} md={8}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
-                <StyledButton color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'none', md:'block'} ,marginLeft:'40px'}}>Sair</StyledButton>
+                <StyledButton onClick={handleClickSair} color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'none', md:'block'} ,marginLeft:'40px'}}>Sair</StyledButton>
                 <ExitToAppIcon sx={{
                   color: 'black',
                   marginRight: '35px',
@@ -48,7 +58,7 @@ function Header() {
                   },
                 }} />
 
-            <StyledButton color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'none', md:'block' } }}>Cadastros</StyledButton>
+            <StyledButton onClick={handleClickCadastro} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'none', md:'block' } }}>Cadastros</StyledButton>
             <AssignmentIcon sx={{
                   color: 'black',
                   display: { xs: 'block',  sm: 'block', md:'none' },

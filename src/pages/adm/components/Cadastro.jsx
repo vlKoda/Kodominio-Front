@@ -1,7 +1,16 @@
 import React from 'react';
 import { Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function Cadastro() {
+  const navigate = useNavigate();
+
+  const handleClickMorador = () => {
+    navigate('/adm/cadastros/morador')
+  }
+  const handleClickFuncionario = () => {
+    navigate('/adm/cadastros/funcionario')
+  }
   return (
     <Box 
       display="flex" 
@@ -11,6 +20,7 @@ function Cadastro() {
       marginTop={{ xs: '30px', sm: '30px', md: '70px' }} // Adicione margem superior apenas em xs e md
     > 
       <button 
+        onClick={handleClickFuncionario}
         style={{ 
           background: '#e1e1e1', 
           padding: '70px 100px', 
@@ -33,6 +43,7 @@ function Cadastro() {
       </button>
       
       <button 
+        onClick={handleClickMorador}
         style={{ 
           background: '#e1e1e1', 
           padding: '70px 100px', 

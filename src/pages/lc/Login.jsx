@@ -54,8 +54,11 @@ function Login() {
         { email, senha },
         { headers: { 'Content-Type': 'application/json' } }
       );
-      localStorage.setItem('token', response.data.token);
-      navigate('/owner')
+      const token = response.data.token;
+      localStorage.setItem('token', token)
+
+        navigate('/adm');
+
     } catch (error) {
       console.error('Login failed', error);
       setErrorMessage('Credenciais inválidas. Por favor, tente novamente.');

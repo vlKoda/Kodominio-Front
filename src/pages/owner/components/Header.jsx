@@ -5,7 +5,6 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import PeopleIcon from '@mui/icons-material/People';
 import { useNavigate } from 'react-router-dom';
-import Owner from '../Owner';
 
 const StyledButton = styled(Button)({
   marginRight: '16px',
