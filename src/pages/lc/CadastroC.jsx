@@ -60,39 +60,49 @@ export default function Cadastro() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
 
-      const token = localStorage.getItem('token');
-
-      const response = await axios.post(config.apiUrl + '/condominio/cadastrar',
-        { cep, nome, rua, numero, bairro, cidade, estado },
-        { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
-      );
-
-      // mensagem de sucesso
-      setSuccessMessage('Cadastro realizado com sucesso!');
-      setTimeout(() => {
-        setSuccessMessage('');
-      }, 3000);
-
-      // limpa campos
-      setCep('');
-      setNome('');
-      setRua('');
-      setNumero('');
-      setBairro('');
-      setCidade('');
-      setEstado('');
-
-    } catch (error) {
-      console.error('Registration failed', error);
-      // mensagem de erro
-      setErrorMessage('Falha no cadastro. Por favor, tente novamente.');
+    if (cep === "" || nome === "" || rua === "" || numero === "" || bairro === "" || cidade === "" || estado === "") {
+      setErrorMessage('Todos os campos precisam ser preenchidos');
       setTimeout(() => {
         setErrorMessage('');
       }, 3000);
+      return;
     }
-  };
+    else {
+      try {
+
+        const token = localStorage.getItem('token');
+
+        const response = await axios.post(config.apiUrl + '/condominio/cadastrar',
+          { cep, nome, rua, numero, bairro, cidade, estado },
+          { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
+        );
+
+        // mensagem de sucesso
+        setSuccessMessage('Cadastro realizado com sucesso!');
+        setTimeout(() => {
+          setSuccessMessage('');
+        }, 3000);
+
+        // limpa campos
+        setCep('');
+        setNome('');
+        setRua('');
+        setNumero('');
+        setBairro('');
+        setCidade('');
+        setEstado('');
+
+      } catch (error) {
+        console.error('Registration failed', error);
+        // mensagem de erro
+        setErrorMessage('Falha no cadastro. Por favor, tente novamente.');
+        setTimeout(() => {
+          setErrorMessage('');
+        }, 3000);
+      }
+    };
+  }
 
 
   return (

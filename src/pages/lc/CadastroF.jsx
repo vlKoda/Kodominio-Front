@@ -57,7 +57,7 @@ export default function Cadastro() {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const id_condominio = decodedToken.condominio;
-  
+
   useEffect(() => {
     if (roleInput === "Síndico") {
       setRole("SINDICO");
@@ -76,8 +76,18 @@ export default function Cadastro() {
         setErrorMessage('');
       }, 3000);
 
+
       console.log("Nome: " + nome + " Email: " + email + " Telefone: " + telefone + " Senha: " + senha + " Senha2: " + senha2 + " Role: " + role + " Condominio: " + id_condominio + " Apartamento: " + apartamento);
-    } else {
+      return;
+    }
+    if (nome === "" || email === "" || telefone === "" || role === "" || senha === "") {
+      setErrorMessage('Todos os campos precisam ser preenchidos');
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 3000);
+      return;
+    }
+    else {
       try {
 
         const token = localStorage.getItem('token');
@@ -99,6 +109,7 @@ export default function Cadastro() {
         setTelefone('');
         setSenha('');
         setSenha2('');
+        setRoleInput('');
 
       } catch (error) {
         console.error('Registration failed', error);

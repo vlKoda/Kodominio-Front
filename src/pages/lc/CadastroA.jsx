@@ -44,13 +44,12 @@ export default function Cadastro() {
     navigate('/owner/cadastros')
   }
 
-
   const [data, setData] = useState([]);
   const [selectedCondominio, setSelectedCondominio] = useState([]);
 
   const handleCondominioChange = (event) => {
     setSelectedCondominio(event.target.value);
-  };  
+  };
 
   useEffect(() => {
 
@@ -82,6 +81,14 @@ export default function Cadastro() {
     const id_condominio = selectedCondominio;
     e.preventDefault();
 
+    if (nome === "" || email === "" || telefone === "" || senha === "" || id_condominio === "") {
+      setErrorMessage('Todos os campos precisam ser preenchidos');
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 3000);
+      return;
+    }
+
     if (senha != senha2) {
       setErrorMessage('As senhas precisam coincidir, tente novamente');
       setTimeout(() => {
@@ -89,13 +96,15 @@ export default function Cadastro() {
       }, 3000);
 
       console.log("Nome: " + nome + " Email: " + email + " Telefone: " + telefone + " Senha: " + senha + " Senha2: " + senha2 + " Role: " + role + " Condominio: " + id_condominio + " Apartamento: " + apartamento);
-    } else {
+      return;
+    }
+    else {
       try {
 
         const token = localStorage.getItem('token');
 
         const response = await axios.post(config.apiUrl + '/auth/register',
-          { nome, email, senha, telefone, role, condominio:{id: id_condominio}, apartamento },
+          { nome, email, senha, telefone, role, condominio: { id: id_condominio }, apartamento },
           { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
         );
 
@@ -174,7 +183,7 @@ export default function Cadastro() {
                 >
                   <MenuItem value="" disabled>
                     Selecione o Condominio
-                    </MenuItem>
+                  </MenuItem>
                   {data.map((condominio) => (
                     <MenuItem key={condominio.id} value={condominio.id}>
                       {condominio.nome}

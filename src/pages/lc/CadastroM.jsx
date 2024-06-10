@@ -62,14 +62,25 @@ export default function Cadastro() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (nome === "" || email === "" || telefone === "" || role === "" || senha === "" || apartamento === "") {
+      setErrorMessage('Todos os campos precisam ser preenchidos');
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 3000);
+      return;
+    }
+
     if (senha != senha2) {
       setErrorMessage('As senhas precisam coincidir, tente novamente');
       setTimeout(() => {
         setErrorMessage('');
       }, 3000);
 
+
       console.log("Nome: " + nome + " Email: " + email + " Telefone: " + telefone + " Senha: " + senha + " Senha2: " + senha2 + " Role: " + role + " Condominio: " + id_condominio + " Apartamento: " + apartamento);
-    } else {
+      return;
+    }
+    else {
       try {
 
         const token = localStorage.getItem('token');
