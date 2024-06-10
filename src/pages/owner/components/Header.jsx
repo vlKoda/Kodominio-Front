@@ -22,6 +22,9 @@ function Header() {
   const handleClickCadastro = () => {
     navigate('/owner/cadastros')
   }
+  const handleClickCondominios = () => {
+    navigate('/owner')
+  }
   const handleClickSair = () => {
     navigate('/');
   }
@@ -44,7 +47,7 @@ function Header() {
                     boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
                   },
                 }} />
-                <StyledButton color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' }, marginRight: '150px' }}>Integrantes</StyledButton>
+                <StyledButton onClick={handleClickCondominios} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' }, marginRight: '150px' }}>Condominios</StyledButton>
                
                 <PeopleIcon sx={{
                   color: 'black',
