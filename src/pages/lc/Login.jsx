@@ -16,6 +16,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 import config from '../../config';
+import { jwtDecode } from 'jwt-decode';
 
 
 
@@ -36,7 +37,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 function Login() {
-
+  localStorage.removeItem('token');
   const navigate = useNavigate();
 
   const handleClickSair = () => {
@@ -55,9 +56,22 @@ function Login() {
         { headers: { 'Content-Type': 'application/json' } }
       );
       const token = response.data.token;
-      localStorage.setItem('token', token)
+      localStorage.setItem('token', token);
+      const decodedToken = jwtDecode(token);
+      const role = decodedToken.role;
 
+      if(role.includes('OWNER')){ 
+        navigate('/owner');
+        return;
+      }
+      if(role.includes('ADMIN')){ 
         navigate('/adm');
+        return;
+      }
+      if(role.includes('MORADOR')){ 
+        navigate('/morador');
+        return;
+      }
 
     } catch (error) {
       console.error('Login failed', error);
