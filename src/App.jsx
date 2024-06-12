@@ -36,16 +36,18 @@ function App() {
       <Routes>
         <Route path="/" element={<Index/>} />
         <Route path="/login" element={<Login />} />
-        <Route path="owner/cadastros/condominio" element={<CadastroC />} />
         <Route path="/owner" element={<Owner />} />
+        <Route path="/owner/cadastros" element={<Ownerc />} />
+        <Route path="owner/cadastros/condominio" element={<CadastroC />} />
+        <Route path="/owner/cadastros/adm" element={<CadastroA />} />
         <Route path="/adm" element={<Adm />} />
-        <Route path="/morador" element={<Morador />} />
         <Route path="/adm/cadastros" element={<Admc />} />
         <Route path="/adm/cadastros/morador" element={<CadastroM />} />
         <Route path="/adm/cadastros/funcionario" element={<CadastroF />} />
-        <Route path="/owner/cadastros" element={<Ownerc />} />
-        <Route path="/owner/cadastros/adm" element={<CadastroA />} />
-        <Route path="/owner/integrantes" element={<Integrantes />} />
+        <Route path="/morador" element={<Morador />} />
+        <Route path="/morador/ocorrencia" element={<Moradoro />} />
+        <Route path="/morador/perfil" element={<Moradorp />} />
+        <Route path="/sindico" element={<Sindico />} />
       </Routes>
  </Router>
 
