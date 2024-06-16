@@ -32,7 +32,7 @@ function Cards (){
                 xs:'column',
               sm : 'row',
             },
-             marginTop: '40px', }}>
+             marginTop: '50px', }}>
           <StyledDiv>
             <PsychologyAltIcon />
             <Typography variant="subtitle1" sx={{   fontFamily: "'Poppins', sans-serif"}}>Quem somos?</Typography>

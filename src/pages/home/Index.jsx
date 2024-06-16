@@ -1,26 +1,28 @@
+import React from 'react';
 import Header from "./components/Header";
-import { Container } from '@mui/material';
+import { Container, Box } from '@mui/material';
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 
 function Index() {
   localStorage.removeItem('token');
+
   return (
-    <div >
-
-
-      <Container sx={{
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
         backgroundColor: '#d9d9d9',
-      }}>
-        <div className="home">
-
-          <Header />
-          <Main />
-          <Footer />
-        </div>
-
+      }}
+    >
+      <Header />
+      <Container component="main" sx={{ flex: 1, paddingTop: 2 }}>
+        <Main />
       </Container>
-    </div>
+      <Footer />
+    </Box>
   );
 }
+
 export default Index;

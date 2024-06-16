@@ -17,7 +17,7 @@ function Main() {
                 sx={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    marginTop: '35px',
+                    marginTop: '40px',
                 }}
             >
                 <Typography

@@ -24,7 +24,7 @@ import CadastroF from './pages/lc/CadastroF'
 import { Home, Pages } from '@mui/icons-material';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import Integrantes from './pages/adm/components/Integrantes';
-
+import Ownerd from './pages/owner/Ownerd';
 
 
 
