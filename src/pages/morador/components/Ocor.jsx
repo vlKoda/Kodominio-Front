@@ -15,23 +15,8 @@ function Ocor() {
   const id_usuario = decodedToken.id;
   const id_condominio = decodedToken.condominio;
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(config.apiUrl + '/usuario/listar/' + id_usuario,
-        { headers: { 'Authorization': `Bearer ${token}` } });
-      setData(response.data);
-    } catch (error) {
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const autor = data.nome;
-  const apartamento = data.apartamento;
-  const email = data.email;
   const [bocorrencia, setBocorrencia] = useState('');
-  const status = 0;
+  const status = "Em avaliação";
   const prioridade = "Pendente"
   const aprovacao = "Pendente"
   const [successMessage, setSuccessMessage] = useState('');
@@ -53,7 +38,7 @@ function Ocor() {
       try {
 
         const response = await axios.post(config.apiUrl + '/ocorrencia/inserir',
-          { autor, apartamento, email, bocorrencia, status, prioridade, aprovacao, condominio: { id: id_condominio } },
+          { bocorrencia, status, prioridade, aprovacao, usuario: {id: id_usuario}, condominio: {id: id_condominio}},
           { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
         );
 
