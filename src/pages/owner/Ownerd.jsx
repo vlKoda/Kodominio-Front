@@ -6,6 +6,8 @@ import Cadastro from './components/Cadastro'
 import { Container } from '@mui/material';
 import Excluir from './components/Excluir';
 import Integrantes from './components/Integrantes';
+import Simulador from './components/simulador';
+
 function Ownerd() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>

@@ -1,44 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Box, Card, CardContent, Typography, Button } from '@mui/material';
-import config from '../../../config';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
 
-function Integrantes() {
+function Simulador() {
+  // Exemplo de dados do funcionário
+  const funcionarios = [
+    { nome: "O velho", funcao: "Babaca que enche meu saco" },
+    { nome: "joão marcelo! ", funcao: "amante do java" },
+    { nome: "Guilherme Peniche homem do front aquele que tudo preve aquele que tudo faz", funcao: "Ser bonito" },
+    { nome: "Yuri e Bel ", funcao: "Quando perguntamos tava jogando ROF2 e mandou sairmos e outro odeia raul beauty" }
 
-  const { id } = useParams();
-  const [data, setData] = useState([]);
-  let role;
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(config.apiUrl + '/usuario/listar/condominio/' + id,
-          { headers: { 'Authorization': `Bearer ${token}` } });
-        setData(response.data);
-      } catch (error) {
-        setError(error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  ];
 
   return (
     <Box
-    display="flex"
-    flexDirection="row"
-    justifyContent="center"
-    flexWrap="wrap"
-    marginTop={{ xs: '30px', sm: '30px', md: '70px' }}
+      display="flex"
+      flexDirection="row"
+      justifyContent="center"
+      flexWrap="wrap"
+      marginTop={{ xs: '30px', sm: '30px', md: '70px' }}
     >
-
-      {data.map((usuario) => (
+      {funcionarios.map((funcionario, index) => (
         <Card
-          key={usuario.id}
+          key={index}
           sx={{
             width: '200px',
             backgroundColor: '#e1e1e1',
@@ -55,12 +38,12 @@ function Integrantes() {
           onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0px 12px 20px rgba(0, 0, 0, 0.2)'}
           onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0px 8px 16px rgba(0, 0, 0, 0.1)'}
         >
-          <CardContent sx={{ textAlign: 'center' }}>
+          <CardContent>
             <Typography variant="body1" fontSize="1.2rem" marginBottom="10px">
-             Nome: {usuario.nome}
+              Nome: {funcionario.nome}
             </Typography>
             <Typography variant="body1" fontSize="1.2rem" marginBottom="20px">
-             Função: {usuario.role}
+              Função: {funcionario.funcao}
             </Typography>
             <Box display="flex" justifyContent="center">
               <Button
@@ -68,7 +51,6 @@ function Integrantes() {
                 color="secondary"
                 sx={{
                   marginTop: '20px',
-                  fontFamily: "'Poppins', sans-serif",
                   backgroundColor: '#ec3c21',
                   color: 'white',
                   '&:hover': {
@@ -82,9 +64,8 @@ function Integrantes() {
           </CardContent>
         </Card>
       ))}
-
     </Box>
   );
 }
 
-export default Integrantes;
+export default Simulador;
