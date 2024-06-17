@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Cadastro from './components/Cadastro'
 import { Container } from '@mui/material';
 import Excluir from './components/Excluir';
+import Integrantes from './components/Integrantes';
 function Ownerd() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -12,6 +13,7 @@ function Ownerd() {
         <Header />
         <Maind />
    <Excluir/>
+   <Integrantes/>
       </Container>
       <Footer style={{ marginTop: 'auto' }} />
     </div>

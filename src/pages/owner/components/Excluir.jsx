@@ -18,15 +18,13 @@ function Excluir() {
            color="secondary"
            sx={{
              marginTop: '20px',
-             fontFamily: "'Poppins', sans-serif",  backgroundColor: 'darkred',  
+             fontFamily: "'Poppins', sans-serif",  backgroundColor: '#ec3c21',  
              color: 'white',  
              '&:hover': {
                backgroundColor: '#6c140d',  
              },
            }}
-           onClick={() => {
-             console.log("Excluir clicado!");
-           }}
+  
          >
            Excluir
          </Button>

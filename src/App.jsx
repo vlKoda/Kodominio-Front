@@ -11,7 +11,7 @@ import Owner from './pages/owner/Owner'
 import Moradorp from './pages/morador/Moradorp';
 import Porteirop from './pages/Porteiro/Porteirop';
 import Admi from './pages/adm/Admi';
-import Owneri from './pages/owner/OwnerI';
+
 import Sindicoi from './pages/sindico/Sindicoi';
 import Ownerc from './pages/owner/Ownerc';
 import Sindicoo from './pages/sindico/Sincidoo';
@@ -34,7 +34,7 @@ function App() {
     
 <Router>
       <Routes>
-        <Route path="/" element={<Index/>} />
+        <Route path="/" element={<Ownerd/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/owner" element={<Owner />} />
         <Route path="/owner/cadastros" element={<Ownerc />} />

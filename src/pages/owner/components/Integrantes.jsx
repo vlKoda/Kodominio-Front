@@ -10,7 +10,7 @@ function Integrantes() {
       alignItems="center" // Centraliza verticalmente
       marginTop={{ xs: '30px', sm: '30px', md: '70px' }} // Adiciona margem superior
     >
-      {/** Card 1 */}
+  
       <Card
         sx={{
           backgroundColor: '#e1e1e1', // Cor do Card
@@ -33,30 +33,34 @@ function Integrantes() {
           <Typography variant="body1" fontSize="1.2rem" marginBottom="20px">
             Função: seila
           </Typography>
+          <Box display="flex" justifyContent="center">
           <Button
-            variant="contained"
-            sx={{
-              backgroundColor: '#e1e1e1', // Mesma cor do Card
-              borderRadius: '10px', // Mesmo border-radius
-              color: 'black', // Cor do texto
-              transition: 'transform 0.3s', // Transição suave
-              ':hover': {
-                transform: 'scale(1.1)', // Efeito de hover para aumentar tamanho
-                backgroundColor: '#e1e1e1', // Garante que a cor não mude no hover
-              },
-            }}
-          >
-            Excluir
-          </Button>
+           variant="contained"
+           color="secondary"
+           sx={{
+             marginTop: '20px',
+             fontFamily: "'Poppins', sans-serif",  backgroundColor: '#ec3c21',  
+             color: 'white',  
+             '&:hover': {
+               backgroundColor: '#6c140d',  
+             },
+           }}
+  
+         >
+           Excluir
+         </Button>
+  
+          </Box>
         </CardContent>
       </Card>
 
-      {/** Card 2 */}
       <Card
         sx={{
           backgroundColor: '#e1e1e1', // Cor do Card
           padding: '30px 40px', // Reduz o padding
-          borderRadius: '10px', // Mesmo border-radius
+          borderRadius: '10px', // Mantém o border-radius
+          marginRight: '10px', // Espaçamento entre cards
+          marginLeft: '10px', // Espaçamento entre cards
           marginBottom: '30px', // Margem inferior
           boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)', // Sombras leves
           transition: 'transform 0.3s, box-shadow 0.3s', // Transição suave
@@ -67,28 +71,32 @@ function Integrantes() {
       >
         <CardContent>
           <Typography variant="body1" fontSize="1.2rem" marginBottom="10px">
-            Nome: Ciclano de Tal
+            Nome: Fulano de Tal
           </Typography>
           <Typography variant="body1" fontSize="1.2rem" marginBottom="20px">
             Função: seila
           </Typography>
+          <Box display="flex" justifyContent="center">
           <Button
-            variant="contained"
-            sx={{
-              backgroundColor: '#e1e1e1', // Mesma cor do Card
-              borderRadius: '10px', // Mesmo border-radius
-              color: 'black', // Cor do texto
-              transition: 'transform 0.3s', // Transição suave
-              ':hover': {
-                transform: 'scale(1.1)', // Efeito de hover para aumentar tamanho
-                backgroundColor: '#e1e1e1', // Garante que a cor não mude no hover
-              },
-            }}
-          >
-            Excluir
-          </Button>
+           variant="contained"
+           color="secondary"
+           sx={{
+             marginTop: '20px',
+             fontFamily: "'Poppins', sans-serif",  backgroundColor: '#ec3c21',  
+             color: 'white',  
+             '&:hover': {
+               backgroundColor: '#6c140d',  
+             },
+           }}
+  
+         >
+           Excluir
+         </Button>
+  
+          </Box>
         </CardContent>
       </Card>
+      
     </Box>
   );
 }
