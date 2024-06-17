@@ -6,11 +6,12 @@ import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from '../../../config';
+import { Link } from 'react-router-dom';
 
-
-
-const StyledDiv = styled('div')({
-  width: 'calc(45% - 20px)', // Reduzindo a largura dos boxes para ocupar 35% da largura da tela com margens
+const StyledLink = styled(Link)({
+  height: 'auto',
+  overflow: 'hidden',
+  width: '300px',
   padding: '10px',
   paddingTop: '20px',
   paddingBottom: '20px',
@@ -22,8 +23,16 @@ const StyledDiv = styled('div')({
   marginBottom: '3%',
   marginRight: '10px',
   marginLeft: '10px',
+  textDecoration: 'none',
+  color: 'inherit',
   '&:hover': {
     boxShadow: '0px 6px 10px rgba(0, 0, 0, 0.2)',
+  },
+  '&:focus': {
+    outline: 'none', // Remove o outline azul ao focar
+  },
+   '&:visited': {
+    color: 'inherit', // Mantém a cor do texto inalterada após a visita
   },
   '@media (max-width: 600px)': { // Ajuste para o breakpoint 'xs'
     width: 'calc(70% - 20px)', // Reduzindo a largura dos boxes para ocupar 70% da largura da tela com margens
@@ -98,7 +107,7 @@ function Condominios() {
       >
 
         {data.map((condominio, index) => (
-          <StyledDiv key={index}>
+          <StyledLink key={index} component={Link} to={`/owner/condominio/${condominio.id}`}>
             <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
               {condominio.nome} {/* Supondo que o nome do condomínio esteja no campo 'nome' */}
             </Typography>
@@ -120,7 +129,7 @@ function Condominios() {
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
              CEP: {condominio.cep} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
             </Typography>
-          </StyledDiv>
+          </StyledLink>
         ))}
 
 

@@ -34,9 +34,10 @@ function App() {
     
 <Router>
       <Routes>
-        <Route path="/" element={<Ownerd/>} />
+        <Route path="/" element={<Index/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/owner" element={<Owner />} />
+        <Route path="/owner/condominio/:id" element={<Ownerd />} />
         <Route path="/owner/cadastros" element={<Ownerc />} />
         <Route path="owner/cadastros/condominio" element={<CadastroC />} />
         <Route path="/owner/cadastros/adm" element={<CadastroA />} />
