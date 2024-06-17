@@ -10,12 +10,12 @@ function Integrantes() {
   const [data, setData] = useState([]);
   let role;
   const [error, setError] = useState(null);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
 
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('token');
         const response = await axios.get(config.apiUrl + '/usuario/listar/condominio/' + id,
           { headers: { 'Authorization': `Bearer ${token}` } });
         setData(response.data);
@@ -25,7 +25,17 @@ function Integrantes() {
     };
 
     fetchData();
-  }, []);
+  }, []); 
+
+  const handleExcluirUsuario = async (id_usuario) => {
+    try {
+      const response = await axios.delete(config.apiUrl + '/usuario/' + id_usuario,
+        { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
+      );
+    } catch (error) {
+      console.error('Erro ao excluir usuario:', error);
+    }
+  };
 
   return (
     <Box
@@ -64,6 +74,7 @@ function Integrantes() {
             </Typography>
             <Box display="flex" justifyContent="center">
               <Button
+                onClick={() => handleExcluirUsuario(usuario.id)}
                 variant="contained"
                 color="secondary"
                 sx={{
