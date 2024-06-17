@@ -109,25 +109,25 @@ function Condominios() {
         {data.map((condominio, index) => (
           <StyledLink key={index} component={Link} to={`/owner/condominio/${condominio.id}`}>
             <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-              {condominio.nome} {/* Supondo que o nome do condomínio esteja no campo 'nome' */}
+              {condominio.nome}
             </Typography>
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-              {condominio.estado} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+              {condominio.estado}
             </Typography>
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-              {condominio.cidade} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+              {condominio.cidade}
             </Typography>
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-              {condominio.bairro} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+              {condominio.bairro}
             </Typography>
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-              {condominio.rua} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+              {condominio.rua}
             </Typography>
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-              Numero: {condominio.numero} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+              Numero: {condominio.numero}
             </Typography>
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-             CEP: {condominio.cep} {/* Supondo que as informações do condomínio estejam no campo 'informacoes' */}
+             CEP: {condominio.cep}
             </Typography>
           </StyledLink>
         ))}
