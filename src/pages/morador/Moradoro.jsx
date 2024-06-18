@@ -4,6 +4,8 @@ import Maino from './components/Maino';
 import Footer from './components/Footer';
 import Perfil from './components/Perfil'
 import { Container } from '@mui/material';
+import Cards from './components/Cards';
+
 
 function Moradoro() {
   return (
@@ -11,7 +13,7 @@ function Moradoro() {
       <Container style={{ flexGrow: 1 }}>
         <Header />
         <Maino />
-    
+    <Cards/>
       </Container>
       <Footer style={{ marginTop: 'auto' }} />
     </div>

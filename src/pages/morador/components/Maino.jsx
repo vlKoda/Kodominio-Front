@@ -7,32 +7,32 @@ import { Box, Card, CardContent, Typography, Button } from '@mui/material';
 
 function Mains() {
   
-  const token = localStorage.getItem('token')
-  const decodedToken = jwtDecode(token);
-  const id_usuario = decodedToken.id
+  // const token = localStorage.getItem('token')
+  // const decodedToken = jwtDecode(token);
+  // const id_usuario = decodedToken.id
 
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
+  // const [data, setData] = useState([]);
+  // const [error, setError] = useState(null);
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(config.apiUrl + '/ocorrencia/listar/usuario/' + id_usuario,
-        { headers: {'Authorization': `Bearer ${token}` } });
-        setData(response.data); 
-      } catch (error) {
-        setError(error);
-      }
-    };
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(config.apiUrl + '/ocorrencia/listar/usuario/' + id_usuario,
+  //       { headers: {'Authorization': `Bearer ${token}` } });
+  //       setData(response.data); 
+  //     } catch (error) {
+  //       setError(error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
-  const handleGrauChange = (event, index) => {
+  // const handleGrauChange = (event, index) => {
 
-    console.log(event.target.value);
-  };
+  //   console.log(event.target.value);
+  // };
 
   return (
     <Box
