@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 
 const StyledLink = styled(Link)({
   height: 'auto',
+  width: '400px',
   overflow: 'hidden',
-  width: '300px',
   padding: '10px',
   paddingTop: '20px',
   paddingBottom: '20px',

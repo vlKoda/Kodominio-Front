@@ -1,9 +1,9 @@
 import React from "react";
-import { Typography, Box } from "@mui/material";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from '../../../config';
 import { jwtDecode } from 'jwt-decode';
+import { Box, Card, CardContent, Typography, Button } from '@mui/material';
 
 function Mains() {
   
@@ -12,7 +12,6 @@ function Mains() {
   const id_usuario = decodedToken.id
 
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -22,23 +21,13 @@ function Mains() {
         const response = await axios.get(config.apiUrl + '/ocorrencia/listar/usuario/' + id_usuario,
         { headers: {'Authorization': `Bearer ${token}` } });
         setData(response.data); 
-        setLoading(false);  
       } catch (error) {
         setError(error);
-        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
-
-  if (loading) {
-    return <Typography variant="body1">Carregando...</Typography>;
-  }
-
-  if (error) {
-    return <Typography variant="body1">Erro ao carregar os dados: {error.message}</Typography>;
-  }
 
   const handleGrauChange = (event, index) => {
 

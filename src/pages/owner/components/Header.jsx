@@ -37,7 +37,7 @@ function Header() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
                 <StyledButton onClick= {handleClickSair} color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'block' },marginLeft:'40px'  }}>Sair</StyledButton>
-                <ExitToAppIcon sx={{
+                <ExitToAppIcon onClick= {handleClickSair} sx={{
                   color: 'black',
                   marginRight: '35px',
                   display: { xs: 'block', sm: 'none' },
@@ -49,7 +49,7 @@ function Header() {
                 }} />
                 <StyledButton onClick={handleClickCondominios} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' }, marginRight: '150px' }}>Condominios</StyledButton>
                
-                <PeopleIcon sx={{
+                <PeopleIcon onClick={handleClickCondominios} sx={{
                   color: 'black',
                   marginRight: '35px',
                   display: { xs: 'block', sm: 'none' },
@@ -62,7 +62,7 @@ function Header() {
                 }} />
 
             <StyledButton onClick={handleClickCadastro} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' } }}>Cadastros</StyledButton>
-            <AssignmentIcon sx={{
+            <AssignmentIcon onClick={handleClickCadastro} sx={{
                   color: 'black',
                   display: { xs: 'block', sm: 'none' },
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
