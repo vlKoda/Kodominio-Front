@@ -112,16 +112,16 @@ function Condominios() {
               {condominio.nome}
             </Typography>
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-              {condominio.estado}
+              Estado: {condominio.estado}
             </Typography>
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-              {condominio.cidade}
+              Cidade: {condominio.cidade}
             </Typography>
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-              {condominio.bairro}
+              Bairro: {condominio.bairro}
             </Typography>
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-              {condominio.rua}
+              Rua: {condominio.rua}
             </Typography>
             <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
               Numero: {condominio.numero}

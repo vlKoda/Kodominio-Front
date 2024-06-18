@@ -1,14 +1,57 @@
 import React from "react";
 import { Box, Card, CardContent, Typography, Button } from '@mui/material';
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import config from "../../../config";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function Cards() {
 
-  const funcionarios = [
-    {ocorrencia: "Rfspamfpsamsopmfasfmoasmfoasmfopasmfopasmfopasmfopasmfopasmfasmfopasmfasofmsoamfsopfmsmfasopmfsaofmofmasmfaopmfasm" },
-    {ocorrencia: "joão" },
-  ];
+  const token = localStorage.getItem('token')
+  const decodedToken = jwtDecode(token);
+  const id_usuario = decodedToken.id
+
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(config.apiUrl + '/ocorrencia/listar/usuario/' + id_usuario,
+          { headers: { 'Authorization': `Bearer ${token}` } });
+        setData(response.data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+  };
+
+  const handleExcluirOcorrencia = async (id_ocorrencia) => {
+    try {
+      const response = await axios.delete(config.apiUrl + '/ocorrencia/' + id_ocorrencia,
+        { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
+      );
+    } catch (error) {
+      console.error('Erro ao excluir usuario:', error);
+    }
+  };
+
 
   return (
+
     <Box
       display="flex"
       flexDirection="row"
@@ -16,7 +59,7 @@ function Cards() {
       flexWrap="wrap"
       marginTop={{ xs: '30px', sm: '30px', md: '70px' }}
     >
-      {funcionarios.map((funcionario, index) => (
+      {data.map((ocorrencia, index) => (
         <Card
           key={index}
           sx={{
@@ -43,20 +86,21 @@ function Cards() {
               sx={{
                 wordWrap: 'break-word',
                 wordBreak: 'break-all',
-                whiteSpace: 'normal'
+                whiteSpace: 'normal',
               }}
             >
-              Ocorrencia: {funcionario.ocorrencia}
+              {ocorrencia.bocorrencia}
             </Typography>
 
-            <Typography variant="body1" fontSize="1.2rem" marginBottom="10px">
-              Status:
+            <Typography variant="body1" fontSize="1.1rem" marginBottom="10px" >
+              Status: {ocorrencia.status}
             </Typography>
-            <Typography variant="body1" fontSize="1.2rem" marginBottom="10px">
-              Data:
+            <Typography variant="body1" fontSize="1.1rem" marginBottom="10px" >
+              Data: {formatDate(ocorrencia.datahora)}
             </Typography>
             <Box display="flex" justifyContent="center">
               <Button
+                onClick={() => handleExcluirOcorrencia(ocorrencia.id)}
                 variant="contained"
                 color="secondary"
                 sx={{
@@ -74,6 +118,7 @@ function Cards() {
           </CardContent>
         </Card>
       ))}
+
     </Box>
   );
 }
