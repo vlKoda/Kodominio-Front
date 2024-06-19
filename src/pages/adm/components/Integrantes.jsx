@@ -4,6 +4,7 @@ import config from '../../../config';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function Integrantes() {
 
@@ -12,6 +13,7 @@ function Integrantes() {
   const token = localStorage.getItem('token');
   const decodedToken = jwtDecode(token);
   const id_condominio = decodedToken.condominio;
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -33,6 +35,7 @@ function Integrantes() {
       const response = await axios.delete(config.apiUrl + '/usuario/' + id_usuario,
         { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
       );
+      navigate('/adm')
     } catch (error) {
       console.error('Erro ao excluir usuario:', error);
     }

@@ -3,6 +3,7 @@ import { Box, Card, CardContent, Typography, Button } from '@mui/material';
 import config from '../../../config';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Integrantes() {
 
@@ -11,6 +12,7 @@ function Integrantes() {
   let role;
   const [error, setError] = useState(null);
   const token = localStorage.getItem('token');
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -32,6 +34,7 @@ function Integrantes() {
       const response = await axios.delete(config.apiUrl + '/usuario/' + id_usuario,
         { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
       );
+      navigate('/owner')
     } catch (error) {
       console.error('Erro ao excluir usuario:', error);
     }

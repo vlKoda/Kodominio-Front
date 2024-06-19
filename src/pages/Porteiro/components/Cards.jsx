@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import config from "../../../config";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Cards() {
 
@@ -14,6 +15,7 @@ function Cards() {
 
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -44,6 +46,7 @@ function Cards() {
       const response = await axios.delete(config.apiUrl + '/ocorrencia/' + id_ocorrencia,
         { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
       );
+      navigate('/porteiro')
     } catch (error) {
       console.error('Erro ao excluir usuario:', error);
     }
