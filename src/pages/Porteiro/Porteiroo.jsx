@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Maino from './components/Maino';
 import Footer from './components/Footer';
 import { Container } from '@mui/material';
+import Cards from './components/Cards';
 
 function Porteiroo() {
   return (
@@ -10,7 +11,7 @@ function Porteiroo() {
       <Container style={{ flexGrow: 1 }}>
         <Header />
         <Maino />
-    
+        <Cards/>
       </Container>
       <Footer style={{ marginTop: 'auto' }} />
     </div>

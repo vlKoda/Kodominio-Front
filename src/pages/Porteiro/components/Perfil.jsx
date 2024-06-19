@@ -1,7 +1,31 @@
 import React from 'react';
 import { Card, CardContent, Typography, Box, Button } from '@mui/material';
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
+import config from '../../../config';
 
 const InfoBox = () => {
+
+  const token = localStorage.getItem('token');
+  const decodedToken = jwtDecode(token);
+  const [data, setData] = useState({});
+
+  const id_usuario = decodedToken.id;
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(config.apiUrl + '/usuario/listar/' + id_usuario,
+        { headers: { 'Authorization': `Bearer ${token}` } });
+      setData(response.data);
+    } catch (error) {
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <Box
       sx={{
@@ -23,30 +47,27 @@ const InfoBox = () => {
             xs: '80%', // Para telas pequenas, reduz a largura
             sm: '70%', // Para telas médias, ajusta a largura
             md: '50%', // Para telas maiores, aumenta a largura
-          }, 
+          },
           textAlign: 'left', // Alinha informações à esquerda
-          height: '250px', // Altura do Card para acomodar conteúdo
+          height: '190px', // Altura do Card para acomodar conteúdo
           fontFamily: "'Poppins', sans-serif",
         }}
       >
         <CardContent
           sx={{
-            display: 'flex', 
+            display: 'flex',
             flexDirection: 'column', // Certifica-se de que as informações sejam exibidas uma embaixo da outra
             justifyContent: 'center', // Centraliza verticalmente
           }}
         >
-          <Typography variant="body1" fontFamily= "'Poppins', sans-serif" marginLeft="15px" fontSize="1.2rem" marginTop="20px" color="black">
-            Email: eu
+          <Typography variant="body1" fontFamily="'Poppins', sans-serif" marginLeft="15px" fontSize="1.2rem" marginTop="20px" color="black">
+            Nome: {data.nome || 'Carregando...'}
           </Typography>
-          <Typography variant="body1" fontFamily= "'Poppins', sans-serif" marginLeft="15px" fontSize="1.2rem" marginTop="10px" color="black">
-            Torre: vou
+          <Typography variant="body1" fontFamily="'Poppins', sans-serif" marginLeft="15px" fontSize="1.2rem" marginTop="10px" color="black">
+            Email: {data.email || 'Carregando...'}
           </Typography>
-          <Typography variant="body1" fontFamily= "'Poppins', sans-serif" marginLeft="15px" fontSize="1.2rem" marginTop="10px" color="black">
-            Senha: trancar
-          </Typography>
-          <Typography variant="body1" fontFamily= "'Poppins', sans-serif" marginLeft="15px" fontSize="1.2rem" marginTop="10px" color="black">
-            Número de Apartamento: o curso
+          <Typography variant="body1" fontFamily="'Poppins', sans-serif" marginLeft="15px" fontSize="1.2rem" marginTop="10px" color="black">
+            Telefone: {data.telefone || 'Carregando...'}
           </Typography>
         </CardContent>
       </Card>

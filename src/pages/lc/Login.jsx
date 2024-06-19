@@ -72,7 +72,15 @@ function Login() {
         navigate('/morador');
         return;
       }
-
+      if(role.includes('SINDICO')){ 
+        navigate('/sindico');
+        return;
+      }
+      if(role.includes('PORTEIRO')){ 
+        navigate('/porteiro');
+        return;
+      }
+      
     } catch (error) {
       console.error('Login failed', error);
       setErrorMessage('Credenciais inválidas. Por favor, tente novamente.');

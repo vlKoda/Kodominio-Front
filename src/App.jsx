@@ -42,6 +42,7 @@ function App() {
         <Route path="owner/cadastros/condominio" element={<CadastroC />} />
         <Route path="/owner/cadastros/adm" element={<CadastroA />} />
         <Route path="/adm" element={<Adm />} />
+        <Route path="/adm/integrantes" element={<Admi />} />
         <Route path="/adm/cadastros" element={<Admc />} />
         <Route path="/adm/cadastros/morador" element={<CadastroM />} />
         <Route path="/adm/cadastros/funcionario" element={<CadastroF />} />
@@ -49,6 +50,10 @@ function App() {
         <Route path="/morador/ocorrencia" element={<Moradoro />} />
         <Route path="/morador/perfil" element={<Moradorp />} />
         <Route path="/sindico" element={<Sindico />} />
+        <Route path="/sindico/integrantes" element={<Sindicoi />} />
+        <Route path="/porteiro" element={<Porteiro />} />
+        <Route path="/porteiro/perfil" element={<Porteirop />} />
+        <Route path="/porteiro/ocorrencia" element={<Porteiroo />} />
       </Routes>
  </Router>
 

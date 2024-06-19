@@ -20,6 +20,9 @@ function Header() {
   const handleClickCadastro = () => {
     navigate('/adm/cadastros')
   }
+  const handleClickIntegrantes = () => {
+    navigate('/adm/integrantes')
+  }
   const handleClickSair = () => {
     navigate('/');
   }
@@ -44,7 +47,7 @@ function Header() {
                     boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
                   },
                 }} />
-                <StyledButton color="inherit" sx={{ color: 'black', display: { xs: 'none',sm: 'none', md:'block' }, marginRight: '150px' }}>Integrantes</StyledButton>
+                <StyledButton onClick={handleClickIntegrantes} color="inherit" sx={{ color: 'black', display: { xs: 'none',sm: 'none', md:'block' }, marginRight: '150px' }}>Integrantes</StyledButton>
                
                 <PeopleIcon sx={{
                   color: 'black',
