@@ -10,7 +10,9 @@ function Main() {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-               
+                textAlign: 'center',  // Adicionado para centralizar o texto
+                maxWidth: '100%',  // Adicionado para garantir que o conteúdo não ultrapasse a largura da tela
+                padding: '0 20px',  // Adicionado para dar um pouco de espaço nas laterais em telas menores
             }}
         >
             <Box
@@ -56,8 +58,6 @@ function Main() {
                 >
                     Um sistema de ocorrências para condôminios com intuito de facilitar a sua vivência.
                 </Typography>
-            
-        
             </Box>
             <Box>
                 <Cards />

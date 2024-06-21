@@ -47,11 +47,11 @@ function Header() {
                     boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
                   },
                 }} />
-                <StyledButton onClick={handleClickIntegrantes} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' }, marginRight: '150px' }}>Integrantes</StyledButton>
+                <StyledButton onClick={handleClickIntegrantes} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' },  }}>Integrantes</StyledButton>
                
                 <PeopleIcon sx={{
                   color: 'black',
-                  marginRight: '35px',
+               
                   display: { xs: 'block', sm: 'none' },
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   '&:hover': {
@@ -61,17 +61,7 @@ function Header() {
                   },
                 }} />
 
-            <StyledButton onClick={handleClickOcorrencia} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' } }}>Ocorrências</StyledButton>
-            <AssignmentIcon sx={{
-                  color: 'black',
-                  display: { xs: 'block', sm: 'none' },
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.9)',
-                    boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
-              
-                  },
-                }} />
+       
               </div>
             </Grid>
           </Grid>

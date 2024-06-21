@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
 
-function Mains() {
+function Main2() {
   return (
     <Box
       sx={{
@@ -28,7 +28,7 @@ function Mains() {
             marginLeft: { xs: '18px', lg: '10px' },
           }}
         >
-          Todas
+         Ocorrências 
         </Typography>
 
         <Typography
@@ -40,11 +40,11 @@ function Mains() {
             fontWeight: '400',
           }}
         >
-          Ocorrências.
+        Grau 2.
         </Typography>
       </Box>
     </Box>
   );
 }
 
-export default Mains;
+export default Main2;

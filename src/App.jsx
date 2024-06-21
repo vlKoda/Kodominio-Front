@@ -14,7 +14,7 @@ import Admi from './pages/adm/Admi';
 
 import Sindicoi from './pages/sindico/Sindicoi';
 import Ownerc from './pages/owner/Ownerc';
-import Sindicoo from './pages/sindico/Sincidoo';
+
 import Moradoro from './pages/morador/Moradoro';
 import Porteiroo from './pages/Porteiro/Porteiroo';
 import CadastroM from './pages/lc/CadastroM';
