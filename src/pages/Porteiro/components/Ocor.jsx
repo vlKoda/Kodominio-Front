@@ -16,7 +16,7 @@ function Ocor() {
   const id_condominio = decodedToken.condominio;
 
   const [bocorrencia, setBocorrencia] = useState('');
-  const status = "Em avaliação";
+  const status = "Pendente";
   const prioridade = "Pendente"
   const aprovacao = "Pendente"
   const [successMessage, setSuccessMessage] = useState('');

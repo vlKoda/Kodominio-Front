@@ -18,7 +18,7 @@ function Header() {
 
   const navigate = useNavigate();
 
-  const handleClickOcorrencia = () => {
+  const handleClickOcorrencias = () => {
     navigate('/sindico')
   }
   const handleClickIntegrantes = () => {
@@ -36,7 +36,7 @@ function Header() {
             <Grid item xs={6} sm={6} md={8}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
-                <StyledButton onClick={handleClickSair} color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'block' } ,marginLeft:'40px'  }}>Sair</StyledButton>
+                <StyledButton onClick={handleClickSair} color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'block' }, marginLeft: '40px' }}>Sair</StyledButton>
                 <ExitToAppIcon sx={{
                   color: 'black',
                   marginRight: '35px',
@@ -47,21 +47,36 @@ function Header() {
                     boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
                   },
                 }} />
-                <StyledButton onClick={handleClickIntegrantes} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' },  }}>Integrantes</StyledButton>
-               
+
+                <StyledButton onClick={handleClickIntegrantes} color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'block' }, }}>Integrantes</StyledButton>
+
                 <PeopleIcon sx={{
                   color: 'black',
-               
+
                   display: { xs: 'block', sm: 'none' },
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   '&:hover': {
                     transform: 'scale(1.9)',
-            
+
                     boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
                   },
                 }} />
 
-       
+                <StyledButton onClick={handleClickOcorrencias} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' }, }}>Ocorrências</StyledButton>
+
+                <PeopleIcon sx={{
+                  color: 'black',
+
+                  display: { xs: 'block', sm: 'none' },
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.9)',
+
+                    boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
+                  },
+                }} />
+
+
               </div>
             </Grid>
           </Grid>

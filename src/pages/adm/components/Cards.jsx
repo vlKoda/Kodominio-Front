@@ -1,9 +1,15 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, IconButton } from '@mui/material';
 import { styled } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import { jwtDecode } from 'jwt-decode';
+import config from "../../../config";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
 const StyledDiv = styled('div')({
@@ -34,10 +40,65 @@ const ButtonGroup = styled(Box)({
 });
 
 function Ocor() {
+  const token = localStorage.getItem('token')
+  const decodedToken = jwtDecode(token);
+  const id_condominio = decodedToken.condominio
 
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+  const [selectedGrau, setSelectedGrau] = useState('grau2');
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(config.apiUrl + '/ocorrencia/listar/condominio/' + id_condominio,
+          { headers: { 'Authorization': `Bearer ${token}` } });
+        setData(response.data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleRejeitar = async (id) => {
+    try {
+      await axios.put(`${config.apiUrl}/ocorrencia/editar/${id}?aprovacao=Reprovado&status=Reprovado`, {}, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      window.location.reload();
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  const handleAceitar = async (id, grau) => {
+    try {
+      await axios.put(`${config.apiUrl}/ocorrencia/editar/${id}?aprovacao=Aprovado&status=Em avaliação&prioridade=${grau}`, {}, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      window.location.reload();
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+  };
   const handleGrauChange = (event, index) => {
-
-    console.log(event.target.value);
+    const { value } = event.target;
+    setSelectedGrau((prev) => ({
+      ...prev,
+      [index]: value,
+    }));
   };
   return (
     <Box
@@ -47,9 +108,11 @@ function Ocor() {
         alignItems: 'center', // Alinha os itens no centro da tela verticalmente
         marginTop: '40px',
       }}
-    >
+    >{data.filter(ocorrencia => ocorrencia.aprovacao === 'Pendente').map((ocorrencia, index) => (
       <Box
+        key={index}
         sx={{
+          width: '1000px',
           display: 'flex',
           flexWrap: 'wrap', // Isso faz com que os itens sejam quebrados em várias linhas
           justifyContent: 'center', // Centraliza os itens horizontalmente
@@ -62,166 +125,72 @@ function Ocor() {
           },
         }}
       >
-        <StyledDiv>
-          <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Ocorrência 1
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Identificação: Jonh torre 2 apartamento 4
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Descrição: meu gato ama lasanha
-          </Typography>
-          <ButtonGroup>
-
-        <CheckIcon sx={{
-                  color: 'black',
-                  marginRight: '40px',
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-
-                  
-                }} /> 
-                
-        <DoDisturbIcon sx={{
-                  color: 'black',
-               
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} />
-
-          </ButtonGroup>
-          <RadioGroup
-            row
-            aria-label="grau"
-            name="grau"
-            defaultValue="grau1"
-            onChange={(event) => handleGrauChange(event, 0)}
-            sx={{
-              marginLeft:'15%',
-            }}
-          >
-            <FormControlLabel value="grau1" control={<Radio />} label="Grau 1" />
-            <FormControlLabel value="grau2" control={<Radio />} label="Grau 2" />
-            <FormControlLabel value="grau3" control={<Radio />} label="Grau 3" />
-          </RadioGroup>
-        </StyledDiv>
-
-
-        <StyledDiv>
-        <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Ocorrência 1
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Identificação: Maria torre 5 apartamento 243
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Descrição: Meu cachorro tá passando mal
-          </Typography>
-          <ButtonGroup>
-          <CheckIcon sx={{
-                  color: 'black',
-                  marginRight: '40px',
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} /> 
-        <DoDisturbIcon sx={{
-                  color: 'black',
-               
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} />
-
-          </ButtonGroup>
-          <RadioGroup
-            row
-            aria-label="grau"
-            name="grau"
-            defaultValue="grau1"
-            onChange={(event) => handleGrauChange(event, 0)}
-            sx={{
-              marginLeft:'15%',
-            }}
-          >
-            <FormControlLabel value="grau1" control={<Radio />} label="Grau 1" />
-            <FormControlLabel value="grau2" control={<Radio />} label="Grau 2" />
-            <FormControlLabel value="grau3" control={<Radio />} label="Grau 3" />
-          </RadioGroup>
-        </StyledDiv>
 
         <StyledDiv>
           <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-           Ocorrência 3
+            Ocorrência {index + 1}
           </Typography>
           <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-          Identificação:
+            Identificação: {ocorrencia.usuario.apartamento}
           </Typography>
           <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-          Descrição:
+            Descrição: {ocorrencia.bocorrencia}
+          </Typography>
+          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
+            Data: {formatDate(ocorrencia.datahora)}
           </Typography>
           <ButtonGroup>
-          <CheckIcon sx={{
-                  color: 'black',
-                  marginRight: '40px',
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} /> 
-        <DoDisturbIcon sx={{
-                  color: 'black',
-               
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} />
+            <IconButton onClick={() => handleAceitar(ocorrencia.id, selectedGrau[index] || 'Grau 3')}>
+              <CheckIcon sx={{
+                color: 'black',
+                marginRight: '20px',
+                marginLeft: '20px',
+
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.1)',
+
+                  boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
+                },
+              }} />
+            </IconButton>
+            <IconButton onClick={() => handleRejeitar(ocorrencia.id)}>
+              <DoDisturbIcon sx={{
+                color: 'black',
+                marginLeft: '20px',
+                marginRight: '20px',
+
+
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.1)',
+
+                  boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
+                },
+              }} />
+            </IconButton>
           </ButtonGroup>
           <RadioGroup
             row
             aria-label="grau"
-            name="grau"
-            defaultValue="grau1"
-            onChange={(event) => handleGrauChange(event, 0)}
+            name={`grau${index}`}
+            value={selectedGrau[index]}
+            onChange={(event) => handleGrauChange(event, index)}
             sx={{
-              marginLeft:'15%',
+              marginLeft: '15%',
             }}
           >
             <FormControlLabel value="grau1" control={<Radio />} label="Grau 1" />
             <FormControlLabel value="grau2" control={<Radio />} label="Grau 2" />
             <FormControlLabel value="grau3" control={<Radio />} label="Grau 3" />
           </RadioGroup>
-          
+
         </StyledDiv>
 
       </Box>
-    </Box>
+    ))
+      }
+    </Box >
   );
 }
 

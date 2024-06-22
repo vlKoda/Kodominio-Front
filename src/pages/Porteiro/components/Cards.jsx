@@ -41,17 +41,6 @@ function Cards() {
     });
   };
 
-  const handleExcluirOcorrencia = async (id_ocorrencia) => {
-    try {
-      const response = await axios.delete(config.apiUrl + '/ocorrencia/' + id_ocorrencia,
-        { headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } }
-      );
-      navigate('/porteiro')
-    } catch (error) {
-      console.error('Erro ao excluir usuario:', error);
-    }
-  };
-
 
   return (
 
@@ -102,21 +91,6 @@ function Cards() {
               Data: {formatDate(ocorrencia.datahora)}
             </Typography>
             <Box display="flex" justifyContent="center">
-              <Button
-                onClick={() => handleExcluirOcorrencia(ocorrencia.id)}
-                variant="contained"
-                color="secondary"
-                sx={{
-                  marginTop: '20px',
-                  backgroundColor: '#ec3c21',
-                  color: 'white',
-                  '&:hover': {
-                    backgroundColor: '#6c140d',
-                  },
-                }}
-              >
-                Excluir
-              </Button>
             </Box>
           </CardContent>
         </Card>
