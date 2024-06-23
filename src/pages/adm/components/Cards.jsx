@@ -131,7 +131,7 @@ function Ocor() {
             Ocorrência {index + 1}
           </Typography>
           <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Identificação: {ocorrencia.usuario.apartamento}
+            Identificação: {ocorrencia.usuario.apartamento ? ocorrencia.usuario.apartamento : 'Portaria'}
           </Typography>
           <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
             Descrição: {ocorrencia.bocorrencia}
