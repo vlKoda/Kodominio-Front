@@ -33,7 +33,7 @@ const ButtonGroup = styled(Box)({
   marginTop: '15px',
 });
 
-function Ocor() {
+function Ocor3() {
 
   const handleGrauChange = (event, index) => {
 
@@ -223,4 +223,4 @@ function Ocor() {
   );
 }
 
-export default Ocor;
+export default Ocor3;
