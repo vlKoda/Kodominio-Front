@@ -1,8 +1,14 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, IconButton } from '@mui/material';
 import { styled } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
+import { jwtDecode } from 'jwt-decode';
+import config from "../../../config";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
 
@@ -35,10 +41,58 @@ const ButtonGroup = styled(Box)({
 
 function Ocor1() {
 
-  const handleGrauChange = (event, index) => {
+  const token = localStorage.getItem('token')
+  const decodedToken = jwtDecode(token);
+  const id_condominio = decodedToken.condominio
 
-    console.log(event.target.value);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(config.apiUrl + '/ocorrencia/listar/condominio/' + id_condominio,
+          { headers: { 'Authorization': `Bearer ${token}` } });
+        setData(response.data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
   };
+
+  const handleAtendido = async (id) => {
+    try {
+      await axios.put(`${config.apiUrl}/ocorrencia/editar/${id}?status=Atendida`, {}, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      window.location.reload();
+    } catch (error) {
+      setError(error);
+    }
+  };
+  const handleArquivar = async (id) => {
+    try {
+      await axios.put(`${config.apiUrl}/ocorrencia/editar/${id}?status=Arquivada`, {}, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      window.location.reload();
+    } catch (error) {
+      setError(error);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -47,9 +101,11 @@ function Ocor1() {
         alignItems: 'center', // Alinha os itens no centro da tela verticalmente
         marginTop: '40px',
       }}
-    >
+    >{data.filter(ocorrencia => ocorrencia.aprovacao === 'Aprovado' && ocorrencia.status === 'Em avaliação' && ocorrencia.prioridade === 'grau1').map((ocorrencia, index) => (
       <Box
+        key={index}
         sx={{
+          width: '1000px',
           display: 'flex',
           flexWrap: 'wrap', // Isso faz com que os itens sejam quebrados em várias linhas
           justifyContent: 'center', // Centraliza os itens horizontalmente
@@ -64,162 +120,57 @@ function Ocor1() {
       >
         <StyledDiv>
           <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Ocorrência 1
+            Ocorrência {index + 1}
           </Typography>
           <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Identificação: Jonh torre 2 apartamento 4
+            Identificação: {ocorrencia.usuario.apartamento}
           </Typography>
           <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Problema: meu gato ama lasanha
+            Problema: {ocorrencia.bocorrencia}
+          </Typography>
+          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
+            Data: {formatDate(ocorrencia.datahora)}
           </Typography>
           <ButtonGroup>
+            <IconButton onClick={() => handleAtendido(ocorrencia.id)}>
+              <CheckIcon sx={{
+                color: 'black',
+                marginRight: '20px',
+                marginLeft: '20px',
 
-        <CheckIcon sx={{
-                  color: 'black',
-                  marginRight: '40px',
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.1)',
 
-                  
-                }} /> 
-                
-        <DoDisturbIcon sx={{
-                  color: 'black',
-               
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} />
+                  boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
+                },
 
+
+              }} />
+            </IconButton>
+            <IconButton onClick={() => handleArquivar(ocorrencia.id)}>
+              <DoDisturbIcon sx={{
+                color: 'black',
+                marginRight: '20px',
+                marginLeft: '20px',
+
+
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.1)',
+
+                  boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
+                },
+              }} />
+            </IconButton>
           </ButtonGroup>
-        
+
         </StyledDiv>
 
-
-        <StyledDiv>
-        <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Ocorrência 2
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Identificação: Maria torre 5 apartamento 243
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-            Problema: Meu cachorro tá passando mal
-          </Typography>
-          <ButtonGroup>
-          <CheckIcon sx={{
-                  color: 'black',
-                  marginRight: '40px',
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} /> 
-        <DoDisturbIcon sx={{
-                  color: 'black',
-               
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} />
-
-          </ButtonGroup>
-        
-        </StyledDiv>
-
-        <StyledDiv>
-          <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-           Ocorrência 3
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-          Identificação:
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-          Problema:
-          </Typography>
-          <ButtonGroup>
-          <CheckIcon sx={{
-                  color: 'black',
-                  marginRight: '40px',
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} /> 
-        <DoDisturbIcon sx={{
-                  color: 'black',
-               
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} />
-          </ButtonGroup>
-        
-          
-        </StyledDiv>
-
-        <StyledDiv>
-          <Typography variant="subtitle1" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-           Ocorrência 4
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-          Identificação:
-          </Typography>
-          <Typography variant="body2" sx={{ fontFamily: "'Poppins', sans-serif" }}>
-          Problema:
-          </Typography>
-          <ButtonGroup>
-          <CheckIcon sx={{
-                  color: 'black',
-                  marginRight: '40px',
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} /> 
-        <DoDisturbIcon sx={{
-                  color: 'black',
-               
-                
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-            
-                    boxShadow: '0px 0px 12px rgba(0, 0, 0, 0.3)',
-                  },
-                }} />
-          </ButtonGroup>
-        
-          
-        </StyledDiv>
       </Box>
-    </Box>
+    ))
+      }
+    </Box>
   );
 }
 
