@@ -22,7 +22,7 @@ function Main2() {
           sx={{
             fontFamily: "'Poppins', sans-serif",
             letterSpacing: "-.75px",
-            fontSize: { xs: "1rem", lg: "2rem" },
+          fontSize: { xs: "1.5rem", lg: "2rem" },
             marginRight: { xs: '5px', lg: '10px' },
             fontWeight: '200',
             marginLeft: { xs: '18px', lg: '10px' },
@@ -35,7 +35,7 @@ function Main2() {
           sx={{
             fontFamily: "'Poppins', sans-serif",
             letterSpacing: "-.75px",
-            fontSize: { xs: "1rem", lg: "2rem" },
+          fontSize: { xs: "1.5rem", lg: "2rem" },
             marginRight: '20px',
             fontWeight: '400',
           }}

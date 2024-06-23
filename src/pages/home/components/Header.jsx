@@ -21,7 +21,7 @@ function Header() {
   };
 
   return (
-    <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+    <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '12px' }}>
       <AppBar position="static" sx={{ bgcolor: '#e1e1e1', borderRadius: '10px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)', width: '100%' }}>
         <Toolbar sx={{ justifyContent: 'center' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
