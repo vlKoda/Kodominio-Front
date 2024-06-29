@@ -70,10 +70,10 @@ function Integrantes() {
           onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0px 8px 16px rgba(0, 0, 0, 0.1)'}
         >
           <CardContent sx={{ textAlign: 'center' }}>
-            <Typography variant="body1" fontSize="1.2rem" marginBottom="10px">
+            <Typography variant="body1" fontSize="1.2rem" marginBottom="10px" fontFamily = "'Poppins', sans-serif">
              Nome: {usuario.nome}
             </Typography>
-            <Typography variant="body1" fontSize="1.2rem" marginBottom="20px">
+            <Typography variant="body1" fontSize="1.2rem" marginBottom="20px" fontFamily = "'Poppins', sans-serif">
              Função: {usuario.role}
             </Typography>
             <Box display="flex" justifyContent="center">

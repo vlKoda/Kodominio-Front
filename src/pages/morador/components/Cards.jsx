@@ -72,6 +72,7 @@ function Cards() {
         >
           <CardContent>
             <Typography
+              fontFamily="'Poppins', sans-serif"
               variant="body1"
               fontSize="1.2rem"
               marginBottom="10px"
@@ -84,10 +85,10 @@ function Cards() {
               {ocorrencia.bocorrencia}
             </Typography>
 
-            <Typography variant="body1" fontSize="1.1rem" marginBottom="10px" >
+            <Typography variant="body1" fontSize="1.1rem" marginBottom="10px" fontFamily="'Poppins', sans-serif" >
               Status: {ocorrencia.status}
             </Typography>
-            <Typography variant="body1" fontSize="1.1rem" marginBottom="10px" >
+            <Typography variant="body1" fontSize="1.1rem" marginBottom="10px" fontFamily="'Poppins', sans-serif" >
               Data: {formatDate(ocorrencia.datahora)}
             </Typography>
             <Box display="flex" justifyContent="center">

@@ -26,7 +26,9 @@ function Header() {
     navigate('/owner')
   }
   const handleClickSair = () => {
-    navigate('/');
+    if (window.confirm('Você realmente deseja sair?')) {
+      navigate('/');
+    }
   }
   return (
     <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
@@ -36,8 +38,8 @@ function Header() {
             <Grid item xs={6} sm={6} md={8}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
-                <StyledButton onClick= {handleClickSair} color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'block' },marginLeft:'40px'  }}>Sair</StyledButton>
-                <ExitToAppIcon onClick= {handleClickSair} sx={{
+                <StyledButton onClick={handleClickSair} color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'block' }, marginLeft: '40px' }}>Sair</StyledButton>
+                <ExitToAppIcon onClick={handleClickSair} sx={{
                   color: 'black',
                   marginRight: '35px',
                   display: { xs: 'block', sm: 'none' },
@@ -48,7 +50,7 @@ function Header() {
                   },
                 }} />
                 <StyledButton onClick={handleClickCondominios} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' }, marginRight: '150px' }}>Condominios</StyledButton>
-               
+
                 <PeopleIcon onClick={handleClickCondominios} sx={{
                   color: 'black',
                   marginRight: '35px',
@@ -56,20 +58,20 @@ function Header() {
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   '&:hover': {
                     transform: 'scale(1.9)',
-            
+
                     boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
                   },
                 }} />
 
-            <StyledButton onClick={handleClickCadastro} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' } }}>Cadastros</StyledButton>
-            <AssignmentIcon onClick={handleClickCadastro} sx={{
+                <StyledButton onClick={handleClickCadastro} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'block' } }}>Cadastros</StyledButton>
+                <AssignmentIcon onClick={handleClickCadastro} sx={{
                   color: 'black',
                   display: { xs: 'block', sm: 'none' },
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   '&:hover': {
                     transform: 'scale(1.9)',
                     boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
-              
+
                   },
                 }} />
               </div>

@@ -24,52 +24,54 @@ function Header() {
     navigate('/adm/integrantes')
   }
   const handleClickSair = () => {
-    navigate('/');
+    if (window.confirm('Você realmente deseja sair?')) {
+      navigate('/');
+    }
   }
 
   return (
     <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
-      <AppBar position="static" sx={{ bgcolor: '#e1e1e1', borderRadius: '10px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)', width: '100%', fontFamily:"'Poppins', sans-serif" }}>
+      <AppBar position="static" sx={{ bgcolor: '#e1e1e1', borderRadius: '10px', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)', width: '100%', fontFamily: "'Poppins', sans-serif" }}>
         <Toolbar sx={{ justifyContent: 'center' }}>
           <Grid container justifyContent="center" alignItems="center">
             <Grid item xs={6} sm={6} md={8}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
-                <StyledButton onClick={handleClickSair} color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'none', md:'block'} ,marginLeft:'40px'}}>Sair</StyledButton>
+                <StyledButton onClick={handleClickSair} color="inherit" sx={{ color: 'black', marginRight: '150px', display: { xs: 'none', sm: 'none', md: 'block' }, marginLeft: '40px' }}>Sair</StyledButton>
                 <ExitToAppIcon sx={{
                   color: 'black',
                   marginRight: '35px',
-                
-                  display: { xs: 'block', sm: 'block', md:'none' },
+
+                  display: { xs: 'block', sm: 'block', md: 'none' },
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   '&:hover': {
                     transform: 'scale(1.9)',
                     boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
                   },
                 }} />
-                <StyledButton onClick={handleClickIntegrantes} color="inherit" sx={{ color: 'black', display: { xs: 'none',sm: 'none', md:'block' }, marginRight: '150px' }}>Integrantes</StyledButton>
-               
+                <StyledButton onClick={handleClickIntegrantes} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'none', md: 'block' }, marginRight: '150px' }}>Integrantes</StyledButton>
+
                 <PeopleIcon sx={{
                   color: 'black',
                   marginRight: '35px',
-                  display: { xs: 'block', sm: 'block', md:'none' },
+                  display: { xs: 'block', sm: 'block', md: 'none' },
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   '&:hover': {
                     transform: 'scale(1.9)',
-            
+
                     boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
                   },
                 }} />
 
-            <StyledButton onClick={handleClickCadastro} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'none', md:'block' } }}>Cadastros</StyledButton>
-            <AssignmentIcon sx={{
+                <StyledButton onClick={handleClickCadastro} color="inherit" sx={{ color: 'black', display: { xs: 'none', sm: 'none', md: 'block' } }}>Cadastros</StyledButton>
+                <AssignmentIcon sx={{
                   color: 'black',
-                  display: { xs: 'block',  sm: 'block', md:'none' },
+                  display: { xs: 'block', sm: 'block', md: 'none' },
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   '&:hover': {
                     transform: 'scale(1.9)',
                     boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.3)',
-              
+
                   },
                 }} />
               </div>

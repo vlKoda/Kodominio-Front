@@ -8,7 +8,7 @@ function Footer() {
         width: '70%',
         backgroundColor: '#e1e1e1',
         color: 'black',
-        padding: '15px',
+        padding: '15px', 
         textAlign: 'center',
         boxShadow: '0px -4px 10px rgba(0, 0, 0, 0.3)',
         borderRadius: '10px',

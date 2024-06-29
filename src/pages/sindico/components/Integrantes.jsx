@@ -43,7 +43,7 @@ function Integrantes() {
         <Card
           key={usuario.id}
           sx={{
-            width: '200px',
+            width: '300px',
             backgroundColor: '#e1e1e1',
             padding: '30px 40px',
             borderRadius: '10px',
@@ -59,13 +59,13 @@ function Integrantes() {
           onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0px 8px 16px rgba(0, 0, 0, 0.1)'}
         >
           <CardContent sx={{ textAlign: 'center' }}>
-            <Typography variant="body1" fontSize="1.2rem" marginBottom="20px">
+            <Typography variant="body1" fontSize="1.2rem" marginBottom="20px" fontFamily = "'Poppins', sans-serif">
               Nome: {usuario.nome}
             </Typography>
-            <Typography variant="body1" fontSize="1.2rem" marginBottom="20px">
+            <Typography variant="body1" fontSize="1.2rem" marginBottom="20px" fontFamily = "'Poppins', sans-serif">
               Identificação: {usuario.apartamento ? usuario.apartamento : 'Portaria'}
             </Typography>
-            <Typography variant="body1" fontSize="1.2rem" marginBottom="20px">
+            <Typography variant="body1" fontSize="1.2rem" marginBottom="20px" fontFamily = "'Poppins', sans-serif">
               Telefone: {usuario.telefone}
             </Typography>
           </CardContent>

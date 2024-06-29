@@ -25,7 +25,9 @@ function Header() {
     navigate('/sindico/integrantes');
   };
   const handleClickSair = () => {
-    navigate('/');
+    if (window.confirm('Você realmente deseja sair?')) {
+      navigate('/');
+    }
   };
 
   return (
@@ -35,14 +37,14 @@ function Header() {
           <Grid container justifyContent="center" alignItems="center">
             <Grid item xs={6} sm={6} md={8}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <StyledButton onClick={handleClickSair} color="inherit" sx={{ color: 'black',  marginRight: { lg:'150px',md: '130px',sm: '50px' }, display: { xs: 'none', sm: 'block' }, marginLeft: '70px' }}>
+                <StyledButton onClick={handleClickSair} color="inherit" sx={{ color: 'black', marginRight: { lg: '150px', md: '130px', sm: '50px' }, display: { xs: 'none', sm: 'block' }, marginLeft: '70px' }}>
                   Sair
                 </StyledButton>
                 <ExitToAppIcon
                   sx={{
                     color: 'black',
                     marginRight: '35px',
-                    
+
                     display: { xs: 'block', sm: 'none' },
                     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                     '&:hover': {
@@ -51,7 +53,7 @@ function Header() {
                     },
                   }}
                 />
-                <StyledButton onClick={handleClickIntegrantes} color="inherit" sx={{ color: 'black',     marginRight: { md: '150px',sm: '100px',  }, display: { xs: 'none', sm: 'block' } }}>
+                <StyledButton onClick={handleClickIntegrantes} color="inherit" sx={{ color: 'black', marginRight: { md: '150px', sm: '100px', }, display: { xs: 'none', sm: 'block' } }}>
                   Integrantes
                 </StyledButton>
                 <PeopleIcon
@@ -71,7 +73,7 @@ function Header() {
                   sx={{
                     color: 'black',
                     display: { xs: 'none', sm: 'block' },
-                    marginRight: { xl: '0px', lg: '10px', md: '100px',sm: '100px',  },
+                    marginRight: { xl: '0px', lg: '10px', md: '100px', sm: '100px', },
                   }}
                 >
                   Ocorrências
@@ -80,7 +82,7 @@ function Header() {
                   sx={{
                     color: 'black',
                     display: { xs: 'block', sm: 'none' },
-                    marginLeft: { sm: '0px', xs:'30px'  },
+                    marginLeft: { sm: '0px', xs: '30px' },
                     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                     '&:hover': {
                       transform: 'scale(1.9)',

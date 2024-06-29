@@ -44,7 +44,7 @@ function Maind() {
           sx={{
             fontFamily: "'Poppins', sans-serif",
             letterSpacing: "-.75px",
-            fontSize: { xs: "1rem", lg: "2rem" },
+            fontSize: { xs: "1.8rem", lg: "2rem" },
             marginRight: { xs: '5px', lg: '10px' },
             fontWeight: '200',
             marginLeft: { xs: '18px', lg: '10px' },

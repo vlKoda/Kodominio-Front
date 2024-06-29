@@ -20,7 +20,9 @@ function Header() {
   const navigate = useNavigate();
 
   const handleClickSair = () => {
-    navigate('/');
+    if (window.confirm('Você realmente deseja sair?')) {
+      navigate('/');
+    }
   }
   const handleClickPerfil = () => {
     navigate('/porteiro/perfil');
